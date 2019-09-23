@@ -13,9 +13,17 @@ public class PlayerMov : MonoBehaviour {
     void Start () {
         playerRigidbody = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 9){
+            //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
+            playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 

@@ -15,12 +15,16 @@ public class Bariil : MonoBehaviour {
     {
         if (collision.gameObject.layer == 11){
             rb.AddExplosionForce(power, transform.position, radius, 3.0F, ForceMode.Impulse);
+            Destroy(gameObject, 3);
             //collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(10, Vector3.zero, 10);
         } else if (collision.gameObject.layer == 12){
             rb.AddExplosionForce(power, transform.position, radius, 3.0F, ForceMode.Impulse);
-            //collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(10, Vector3.zero, 10);
+            Destroy(gameObject, 3);
+        } else if (collision.gameObject.layer == 13){
+            rb.AddExplosionForce(power, transform.position, radius, 3.0F, ForceMode.Impulse);
+            Destroy(gameObject, 3);
         }
-    }
+    } 
 
     // Update is called once per frame
     void Update () {
