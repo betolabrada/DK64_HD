@@ -9,6 +9,7 @@ public class PlayerArm : MonoBehaviour {
 
     private int contador = 0;
     Rigidbody playerRigidbody;
+    
 
     public GameObject player;
     PlayerMov playerMov;
@@ -56,8 +57,11 @@ public class PlayerArm : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.tag == "Player")
         {
+            Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+            otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
             playerHealth.HacerDanio(golpe);
         }
     }

@@ -13,8 +13,8 @@ public class Barril : MonoBehaviour {
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerHealth = player.GetComponent<PlayerHealth>();
     }
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -22,8 +22,9 @@ public class Barril : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject.tag == ("Player"))
         {
+            playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth.saludActual > 0)
             {
                 playerHealth.HacerDanio(danioBarril);
