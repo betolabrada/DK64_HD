@@ -3,40 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerArm : MonoBehaviour {
+
+    public int golpe = 2;
+    public float tiempoEntreGolpes = 0.25f;
+
     private int contador = 0;
-    private Renderer renderer;
     Rigidbody playerRigidbody;
+
+    GameObject player;
+    PlayerMov playerMov;
+    PlayerHealth playerHealth;
+    float timer;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerMov = player.GetComponent<PlayerMov>();
+        playerHealth = player.GetComponent<PlayerHealth>();
+
+    }
 
     // Use this for initialization
     void Start () {
-        playerRigidbody = transform.parent.GetComponent<Rigidbody>();
-        renderer = gameObject.GetComponent<Renderer>();
-        renderer.enabled = false;
+        playerRigidbody = GetComponent<Rigidbody>();
+        print(transform.childCount);
+        //renderer = gameObject.GetComponent<Renderer>();
+        //renderer.enabled = false;
     }
 
-    void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.layer == 9)
-        {
-            //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
-            playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
-        }
-    }
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyUp(KeyCode.F)){
 
-            renderer.enabled = true;
-
+        timer += Time.deltaTime;
+        print(timer);
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            timer = 0f;
+            // set active arm
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
 
-        if (renderer.enabled == true){
-            contador++;
+        if (timer >= tiempoEntreGolpes)
+        {
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        if(contador == 10){
-            renderer.enabled = false;
-            contador = 0;
+
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            playerHealth.HacerDanio(golpe);
         }
-	}
+    }
 }

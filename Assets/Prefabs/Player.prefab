@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114584483979157026}
   - component: {fileID: 114176666261593096}
   - component: {fileID: 114964115933199238}
+  - component: {fileID: 114082554378861284}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -43,13 +44,14 @@ GameObject:
   - component: {fileID: 4874028419003918}
   - component: {fileID: 33381077972432650}
   - component: {fileID: 23571566581399486}
+  - component: {fileID: 136091142402032576}
   m_Layer: 11
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4825219373284804
 Transform:
   m_ObjectHideFlags: 1
@@ -188,6 +190,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114082554378861284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1733304105448600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03261b5ddc3f7e945b54a51b3f7a1699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  golpe: 2
+  tiempoEntreGolpes: 0.25
 --- !u!114 &114176666261593096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,3 +242,16 @@ MonoBehaviour:
   saludInicial: 10
   saludActual: 0
   sliderSalud: {fileID: 0}
+--- !u!136 &136091142402032576
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792085023460282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.50000066
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.0000005364418, y: 6.0608257e-16, z: -0.00000008940697}
