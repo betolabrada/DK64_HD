@@ -8,17 +8,19 @@ public class PlayerJump : MonoBehaviour {
 
     Rigidbody playerRigidbody;
     public bool estaEnPiso;
+    int playerN;
 
     void Start()
     {
         estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
+
     }
 
     void FixedUpdate()
     {
 
-        if (Input.GetButtonDown("Jump") && estaEnPiso)
+        if (Input.GetButtonDown("P" + playerN + "J") && estaEnPiso)
         {
             Jump();
             estaEnPiso = false;

@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerMov : MonoBehaviour {
 
     public float speed = 5f;
+    public int playerN;
+    bool estaEnPiso;
 
     Rigidbody playerRigidbody;
     Vector3 movement;
 
     // Use this for initialization
     void Start () {
+        estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
 	}
 
@@ -20,15 +23,52 @@ public class PlayerMov : MonoBehaviour {
             //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
             playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
         }
+        if (collision.gameObject.tag == "Ground" && !estaEnPiso)
+        {
+            print("en piso");
+            estaEnPiso = true;
+        }
     }
 
     // Update is called once per frame
     void Update () {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("P" + playerN + "H");
+        float v = Input.GetAxisRaw("P" + playerN + "V");
 
+        //  ROTACION
+        float rx = Input.GetAxis("P" + playerN + "RX");
+        float ry = Input.GetAxis("P" + playerN + "RY");
+
+        if (Input.GetButton("P" + playerN + "RX"))
+        {
+            transform.Rotate(0, rx * Time.deltaTime * 1000, 0);
+        }
+        if (Input.GetButton("P" + playerN + "RY"))
+        {
+            transform.Rotate(ry * Time.deltaTime * 1000, 0, 0);
+        }
+
+        /*
+        transform.Rotate(Vector3.up, -100 * Time.deltaTime);
+        if (Input.GetKey(KeyCode.RightArrow))
+            transform.Rotate(Vector3.up, 100 * Time.deltaTime);
+        */
+        print("AVER PERRO X " + rx);
+        print("AVER PERRO Y " + ry);
+        
         Move(h, v);
-	}
+        transform.Rotate(ry * Time.deltaTime * 1000, rx * Time.deltaTime * 1000, 0);
+    }
+
+    void FixedUpdate()
+    {
+
+        if (Input.GetButtonDown("P" + playerN + "J") && estaEnPiso)
+        {
+            Jump();
+            estaEnPiso = false;
+        }
+    }
 
     void Move(float h, float v)
     {
@@ -39,4 +79,10 @@ public class PlayerMov : MonoBehaviour {
 
         playerRigidbody.MovePosition(transform.position + movement);
     }
+
+    void Jump()
+    {
+        playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+    }
+    
 }

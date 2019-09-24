@@ -8,13 +8,15 @@ public class PlayerHealth : MonoBehaviour {
     public Slider sliderSalud;
 
 
-    PlayerMov playerMov;
+    public PlayerMov playerMov;
     bool danio;
-    bool estaMuerto;
+    public bool estaMuerto;
     
     void Start()
     {
         saludActual = saludInicial;
+        estaMuerto = false;
+        
     }
 
     void Update()
@@ -44,6 +46,8 @@ public class PlayerHealth : MonoBehaviour {
     {
         estaMuerto = true;
 
-        playerMov.enabled = false; 
+        playerMov.enabled = false;
+
+        Destroy(gameObject);
     }
 }

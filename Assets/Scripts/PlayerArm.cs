@@ -10,17 +10,18 @@ public class PlayerArm : MonoBehaviour {
     private int contador = 0;
     Rigidbody playerRigidbody;
 
-    GameObject player;
+    public GameObject player;
     PlayerMov playerMov;
     PlayerHealth playerHealth;
     float timer;
+    public int playerN;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         playerMov = player.GetComponent<PlayerMov>();
         playerHealth = player.GetComponent<PlayerHealth>();
-
+        playerN = playerMov.playerN;
     }
 
     // Use this for initialization
@@ -36,8 +37,8 @@ public class PlayerArm : MonoBehaviour {
     void Update () {
 
         timer += Time.deltaTime;
-        print(timer);
-        if (Input.GetKeyUp(KeyCode.F))
+        //print(timer);
+        if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
             // set active arm
