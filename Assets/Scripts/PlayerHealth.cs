@@ -36,26 +36,25 @@ public class PlayerHealth : MonoBehaviour {
             StopCoroutine("Recuperacion");
             hayCoroutine = false;
         }
-        if (saludActual < saludInicial && timer > tiempoSinDanio && !hayCoroutine)
+        if(gameObject.layer == 14)
         {
-            hayCoroutine = true;
-            print("coroutine");
-            StartCoroutine("Recuperacion");
+            if (saludActual < saludInicial && timer > tiempoSinDanio && !hayCoroutine)
+            {
+                hayCoroutine = true;
+                print("coroutine");
+                StartCoroutine("Recuperacion");
+            }
         }
+       
         danio = false;
     }
     public void HacerDanio(int cantidad)
     {
         danio = true;
-
         saludActual -= cantidad;
-
         sliderSalud.value = saludActual;
-
-        playerAudio.Play();
-
-        if (saludActual <= 0 && !estaMuerto)
-        {
+        playerAudio.Play();    
+        if (saludActual <= 0 && !estaMuerto){
             Muerte();
         }
     }
@@ -63,9 +62,7 @@ public class PlayerHealth : MonoBehaviour {
     void Muerte()
     {
         estaMuerto = true;
-
         playerMov.enabled = false;
-
         Destroy(gameObject);
     }
 
@@ -73,21 +70,15 @@ public class PlayerHealth : MonoBehaviour {
     {
 
         print("se va aqui");
-        while (saludActual < saludInicial)
-        {
+        while (saludActual < saludInicial){
             saludActual += recuperacion;
-
             sliderSalud.value = saludActual;
-
             print("recup");
             yield return new WaitForSeconds(1f);
         }
 
         print("vida llena");
         hayCoroutine = false;
-        
-
-
-
+       
     }
 }
