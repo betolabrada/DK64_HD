@@ -8,14 +8,18 @@ public class PlayerHealth : MonoBehaviour {
     public Slider sliderSalud;
 
 
-    public PlayerMov playerMov;
+    PlayerMov playerMov;
     bool danio;
     public bool estaMuerto;
+    AudioSource playerAudio;
     
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         saludActual = saludInicial;
         estaMuerto = false;
+
+        playerMov = GetComponent<PlayerMov>();
         
     }
 
@@ -35,6 +39,8 @@ public class PlayerHealth : MonoBehaviour {
         saludActual -= cantidad;
 
         sliderSalud.value = saludActual;
+
+        playerAudio.Play();
 
         if (saludActual <= 0 && !estaMuerto)
         {

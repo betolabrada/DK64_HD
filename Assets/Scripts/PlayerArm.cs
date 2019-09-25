@@ -62,7 +62,12 @@ public class PlayerArm : MonoBehaviour {
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
             otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
             playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth.saludActual <= 0)
+            {
+                Destroy(other);
+            }
             playerHealth.HacerDanio(golpe);
+
         }
     }
 }
