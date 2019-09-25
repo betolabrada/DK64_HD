@@ -53,8 +53,7 @@ public class PlayerMov : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow))
             transform.Rotate(Vector3.up, 100 * Time.deltaTime);
         */
-        print("AVER PERRO X " + rx);
-        print("AVER PERRO Y " + ry);
+
         
         Move(h, v);
         transform.Rotate(ry * Time.deltaTime * 1000, rx * Time.deltaTime * 1000, 0);
