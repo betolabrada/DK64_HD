@@ -4,55 +4,93 @@ using UnityEngine;
 
 public class PlayerArm : MonoBehaviour {
 
-    public int golpe = 2;
+    public int danioDeGolpe = 2;
     public float tiempoEntreGolpes = 0.25f;
+    public int playerN;
+    public GameObject bala;
 
-    private int contador = 0;
     Rigidbody playerRigidbody;
     
-
-    public GameObject player;
     PlayerMov playerMov;
     PlayerHealth playerHealth;
+
     float timer;
-    public int playerN;
+
+    GameObject arm;
+    GameObject gun;
+    Transform gunRef;
+
+    bool gunActive = false;
 
     void Awake()
     {
         //player = GameObject.FindGameObjectWithTag("Player");
-        playerMov = player.GetComponent<PlayerMov>();
-        playerHealth = player.GetComponent<PlayerHealth>();
+        playerMov = GetComponent<PlayerMov>();
+        playerHealth = GetComponent<PlayerHealth>();
         playerN = playerMov.playerN;
-    }
-
-    // Use this for initialization
-    void Start () {
         playerRigidbody = GetComponent<Rigidbody>();
-        print(transform.childCount);
-        //renderer = gameObject.GetComponent<Renderer>();
-        //renderer.enabled = false;
+
+        arm = gameObject.transform.GetChild(0).gameObject;
+        gun = gameObject.transform.GetChild(1).gameObject;
+        gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
+
+
     }
 
-
-    // Update is called once per frame
     void Update () {
 
         timer += Time.deltaTime;
         //print(timer);
+
+        // golpear
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
             // set active arm
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            if (!gunActive) arm.SetActive(true);
+            else DisparalaGun();
         }
 
         if (timer >= tiempoEntreGolpes)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            arm.SetActive(false);
+        }
+
+        // sacar arma
+        if (Input.GetButtonDown("P" + playerN + "P"))
+        {
+            if (!gunActive) SacalaGun();
+            else GuardalaGun();
         }
 
 
 
+    }
+
+    void DisparalaGun()
+    {
+        GameObject instBala = Instantiate(bala, gunRef.position, Quaternion.identity);
+        Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
+        Vector3 shootVec = instBala.transform.forward;
+        shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
+
+        instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
+    }
+    void GuardalaGun()
+    {
+        gun.SetActive(false);
+        gunActive = false;
+        playerMov.speed = 15f;
+    }
+
+    void SacalaGun()
+    {
+        if (!gunActive)
+        {
+            gun.SetActive(true);
+            gunActive = true;
+        }
+        playerMov.speed = 7.5f;
     }
 
     void OnTriggerEnter(Collider other)
@@ -66,7 +104,7 @@ public class PlayerArm : MonoBehaviour {
             {
                 Destroy(other);
             }
-            playerHealth.HacerDanio(golpe);
+            playerHealth.HacerDanio(danioDeGolpe);
 
         }
     }

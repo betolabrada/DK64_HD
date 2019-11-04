@@ -10,8 +10,12 @@ public class PlayerJump : MonoBehaviour {
     public bool estaEnPiso;
     int playerN;
 
+    PlayerMov pMov;
+
     void Start()
     {
+        pMov = GetComponent<PlayerMov>();
+        playerN = pMov.playerN;
         estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
 
@@ -29,14 +33,13 @@ public class PlayerJump : MonoBehaviour {
 
     void Jump()
     {
-        playerRigidbody.AddForce(new Vector3(0,10,0), ForceMode.Impulse);
+        playerRigidbody.AddForce(new Vector3(0,0.25f,0), ForceMode.Impulse);
     }
 
     void OnCollisionEnter(Collision c)
     {
         if (c.gameObject.tag == "Ground" && !estaEnPiso)
         {
-            print("en piso");
             estaEnPiso = true;
         }
     }
