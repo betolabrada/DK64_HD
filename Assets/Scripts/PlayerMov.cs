@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMov : MonoBehaviour {
 
-    public float speed = 5f;
+    public float speed;
     public int playerN;
     bool estaEnPiso;
 
@@ -34,6 +34,9 @@ public class PlayerMov : MonoBehaviour {
     void Update () {
         float h = Input.GetAxisRaw("P" + playerN + "H");
         float v = Input.GetAxisRaw("P" + playerN + "V");
+
+        //float h = Input.GetAxis("P" + playerN + "H");
+        //float v = Input.GetAxis("P" + playerN + "V");
 
         //  ROTACION
         float rx = Input.GetAxis("P" + playerN + "RX");
@@ -76,7 +79,9 @@ public class PlayerMov : MonoBehaviour {
         // normalize
         movement = movement.normalized * speed * Time.deltaTime;
 
-        playerRigidbody.MovePosition(transform.position + movement);
+        //playerRigidbody.MovePosition(transform.position + movement);
+        transform.LookAt(movement + transform.position);
+        transform.Translate(movement, Space.World);
     }
 
     void Jump()
