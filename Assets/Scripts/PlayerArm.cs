@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerArm : MonoBehaviour {
 
@@ -8,7 +9,9 @@ public class PlayerArm : MonoBehaviour {
     public float tiempoEntreGolpes = 0.25f;
     public int playerN;
     public GameObject bala;
+    public GameObject bomb;
 
+    public Text balaText;   
     Rigidbody playerRigidbody;
     
     PlayerMov playerMov;
@@ -19,6 +22,8 @@ public class PlayerArm : MonoBehaviour {
     GameObject arm;
     GameObject gun;
     Transform gunRef;
+
+    Transform bombRef;
 
     bool gunActive = false;
 
@@ -34,15 +39,16 @@ public class PlayerArm : MonoBehaviour {
         gun = gameObject.transform.GetChild(1).gameObject;
         gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
 
+        bombRef = gameObject.transform.GetChild(2).gameObject.transform;
 
     }
 
-    void Update () {
+    void FixedUpdate () {
 
         timer += Time.deltaTime;
         //print(timer);
 
-        // golpear
+        // golpear o disparar
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
@@ -63,18 +69,37 @@ public class PlayerArm : MonoBehaviour {
             else GuardalaGun();
         }
 
+        // lanzar bomba
+        if (Input.GetButtonDown("P" + playerN + "B"))
+        {
+            LanzaBomba();
+        }
 
 
+
+
+    }
+
+    void LanzaBomba()
+    {
+        GameObject instBomba = Instantiate(bomb, bombRef.position, Quaternion.identity);
+        Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
+
+
+        instBombaRigidbody.AddForce(instBomba.transform.up * 10f, ForceMode.Impulse);
     }
 
     void DisparalaGun()
     {
         GameObject instBala = Instantiate(bala, gunRef.position, Quaternion.identity);
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
+        Bullet instBalaScript = instBala.GetComponent<Bullet>();
+        instBalaScript.SetFather(gameObject);
         Vector3 shootVec = instBala.transform.forward;
         shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
 
         instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
+
     }
     void GuardalaGun()
     {
