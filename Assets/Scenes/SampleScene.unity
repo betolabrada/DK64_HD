@@ -308,6 +308,7 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 114176666261593096, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
     - {fileID: 114082554378861284, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
+    - {fileID: 114584483979157026, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &122936679
@@ -1948,6 +1949,19 @@ MonoBehaviour:
   tiempoEntreGolpes: 0.25
   player: {fileID: 1779738079}
   playerN: 0
+--- !u!114 &1779738082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1779738079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b69f52c3ecdaf749a6b82293950e1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 14
+  playerN: 2
 --- !u!82 &1779738088
 AudioSource:
   m_ObjectHideFlags: 0

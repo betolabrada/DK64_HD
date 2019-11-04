@@ -38,14 +38,16 @@ public class PlayerMov : MonoBehaviour {
         //  ROTACION
         float rx = Input.GetAxis("P" + playerN + "RX");
         float ry = Input.GetAxis("P" + playerN + "RY");
-
+        print("asdas");
         if (Input.GetButton("P" + playerN + "RX"))
         {
-            transform.Rotate(0, rx * Time.deltaTime * 1000, 0);
+            print("sadsa");
+            transform.Rotate(0, 0, rx * Time.deltaTime * 1000);
         }
         if (Input.GetButton("P" + playerN + "RY"))
         {
-            transform.Rotate(ry * Time.deltaTime * 1000, 0, 0);
+            print("sadssadsadasa");
+            transform.Rotate(0, ry * Time.deltaTime * 1000, 0);
         }
 
         /*
@@ -56,7 +58,7 @@ public class PlayerMov : MonoBehaviour {
 
         
         Move(h, v);
-        transform.Rotate(ry * Time.deltaTime * 1000, rx * Time.deltaTime * 1000, 0);
+        transform.Rotate(0, rx * Time.deltaTime * 1000, ry * Time.deltaTime * 1000);
     }
 
     void FixedUpdate()
