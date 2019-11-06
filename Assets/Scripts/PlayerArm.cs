@@ -18,6 +18,7 @@ public class PlayerArm : MonoBehaviour {
     
     PlayerMov playerMov;
     PlayerHealth playerHealth;
+    BalasManager bm;
 
     float timer;
 
@@ -28,8 +29,6 @@ public class PlayerArm : MonoBehaviour {
     Transform bombRef;
 
     bool gunActive = false;
-    public int maxAmmo = 50;
-    int gunAmmo;
 
 
     void Awake()
@@ -37,6 +36,8 @@ public class PlayerArm : MonoBehaviour {
         //player = GameObject.FindGameObjectWithTag("Player");
         playerMov = GetComponent<PlayerMov>();
         playerHealth = GetComponent<PlayerHealth>();
+        bm = GetComponent<BalasManager>();
+
         playerN = playerMov.playerN;
         playerRigidbody = GetComponent<Rigidbody>();
 
@@ -45,9 +46,6 @@ public class PlayerArm : MonoBehaviour {
         gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
 
         bombRef = gameObject.transform.GetChild(2).gameObject.transform;
-
-        gunAmmo = maxAmmo;
-
     }
 
     void FixedUpdate () {
@@ -61,7 +59,7 @@ public class PlayerArm : MonoBehaviour {
             timer = 0f;
             // set active arm
             if (!gunActive) arm.SetActive(true);
-            else if (gunAmmo <= 0) GuardalaGun();
+            else if (bm.CurrentAmmo() <= 0) GuardalaGun();
             else DisparalaGun();
         }
 
@@ -108,7 +106,9 @@ public class PlayerArm : MonoBehaviour {
 
         instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
 
-        gunAmmo--;
+        bm.Shot();
+
+       
 
     }
     void GuardalaGun()
@@ -128,19 +128,6 @@ public class PlayerArm : MonoBehaviour {
         playerMov.speed = 7.5f;
     }
 
-    void RechargeGun()
-    {
-        if (gunAmmo < maxAmmo)
-        {
-            if (gunAmmo < maxAmmo - 5)
-                gunAmmo += 5;
-            else while (gunAmmo < maxAmmo) gunAmmo++;
-
-        }
-
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -157,32 +144,10 @@ public class PlayerArm : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "CajaBalas")
-        {
-            RechargeGun();
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(Respawn(other.gameObject));
-        }
-    }
-
     public bool GunIsActive()
     {
         return gunActive;
     }
-
-    public int GetGunAmmo()
-    {
-        return gunAmmo;
-    }
-
-    IEnumerator Respawn(GameObject other)
-    {
-        yield return new WaitForSeconds(5f);
-        other.GetComponent<MeshRenderer>().enabled = true;
-        other.GetComponent<BoxCollider>().enabled = true;
-    }
+    
 
 }

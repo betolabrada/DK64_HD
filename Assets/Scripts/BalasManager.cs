@@ -6,25 +6,32 @@ using UnityEngine.UI;
 public class BalasManager : MonoBehaviour {
 
 
-    PlayerArm plyArm;
-    int ammoP1;
+    public int maxAmmo = 50;
     public Text textAmmo;
+
+    int gunAmmo;
+
+    PlayerArm plyArm;
+
+    bool uiActive;
 
 	void Awake ()
     {
         plyArm = GetComponent<PlayerArm>();
         textAmmo.text = "";
+
+        gunAmmo = maxAmmo;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         bool active = plyArm.GunIsActive();
-        if (active)
+        if (active || uiActive)
         {
             
-            if (plyArm.GetGunAmmo() == 0) textAmmo.text = "¡No hay balas!";
-            else textAmmo.text = "Balas: " + plyArm.GetGunAmmo().ToString();
+            if (gunAmmo == 0) textAmmo.text = "¡No hay balas!";
+            else textAmmo.text = "Balas: " + gunAmmo.ToString();
         }
 
         else
@@ -32,4 +39,44 @@ public class BalasManager : MonoBehaviour {
             textAmmo.text = "";
         }
 	}
+
+    //public void RechargeGun(int ammo)
+    //{
+    //    if (gunAmmo < maxAmmo)
+    //    {
+    //        if (gunAmmo < maxAmmo - ammo)
+    //            gunAmmo += ammo;
+    //        else while (gunAmmo < maxAmmo) gunAmmo++;
+
+    //    }
+
+    //}
+
+    IEnumerator RechargeGun()
+    {
+        print("se va aqui");
+        uiActive = true;
+        if (gunAmmo < maxAmmo)
+        {
+            for (int i = 0; i < 5 && gunAmmo < maxAmmo; i++)
+            {
+                gunAmmo++;
+                textAmmo.text = "Balas: " + gunAmmo.ToString();
+                yield return new WaitForSeconds(.25f);
+            }
+            yield return new WaitForSeconds(3f);
+        }
+        uiActive = false;
+
+    }
+
+    public int CurrentAmmo()
+    {
+        return gunAmmo;
+    }
+
+    public void Shot()
+    {
+        gunAmmo--;
+    }
 }

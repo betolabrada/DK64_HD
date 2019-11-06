@@ -1631,6 +1631,16 @@ Prefab:
       propertyPath: textAmmo
       value: 
       objectReference: {fileID: 778310860}
+    - target: {fileID: 114684008486864258, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: maxAmmo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114964115933199238, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: sliderSalud
+      value: 
+      objectReference: {fileID: 1821553097}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
