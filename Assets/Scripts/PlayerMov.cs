@@ -17,19 +17,6 @@ public class PlayerMov : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
 	}
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 9){
-            //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
-            playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
-        }
-        if (collision.gameObject.tag == "Ground" && !estaEnPiso)
-        {
-            print("en piso");
-            estaEnPiso = true;
-        }
-    }
-
     // Update is called once per frame
     void Update () {
         float h = Input.GetAxisRaw("P" + playerN + "H");
@@ -41,7 +28,6 @@ public class PlayerMov : MonoBehaviour {
         //  ROTACION
         float rx = Input.GetAxis("P" + playerN + "RX");
         float ry = Input.GetAxis("P" + playerN + "RY");
-        print("asdas");
         if (Input.GetButton("P" + playerN + "RX"))
         {
             print("sadsa");
@@ -90,5 +76,19 @@ public class PlayerMov : MonoBehaviour {
     {
         playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
-    
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
+            playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
+        }
+        if (collision.gameObject.tag == "Ground" && !estaEnPiso)
+        {
+            print("en piso");
+            estaEnPiso = true;
+        }
+    }
+
 }
