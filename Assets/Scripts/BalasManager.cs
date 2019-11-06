@@ -64,8 +64,8 @@ public class BalasManager : MonoBehaviour {
                 textAmmo.text = "Balas: " + gunAmmo.ToString();
                 yield return new WaitForSeconds(.25f);
             }
-            yield return new WaitForSeconds(3f);
         }
+        yield return new WaitForSeconds(3f);
         uiActive = false;
 
     }
