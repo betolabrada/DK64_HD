@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerArm : MonoBehaviour {
 
+    // todos los ataques de player: Arm, Gun y Bomb
+
     public int danioDeGolpe = 2;
     public float tiempoEntreGolpes = 0.25f;
     public int playerN;
@@ -16,6 +18,7 @@ public class PlayerArm : MonoBehaviour {
     
     PlayerMov playerMov;
     PlayerHealth playerHealth;
+    BalasManager bm;
 
     float timer;
 
@@ -27,11 +30,14 @@ public class PlayerArm : MonoBehaviour {
 
     bool gunActive = false;
 
+
     void Awake()
     {
         //player = GameObject.FindGameObjectWithTag("Player");
         playerMov = GetComponent<PlayerMov>();
         playerHealth = GetComponent<PlayerHealth>();
+        bm = GetComponent<BalasManager>();
+
         playerN = playerMov.playerN;
         playerRigidbody = GetComponent<Rigidbody>();
 
@@ -40,7 +46,6 @@ public class PlayerArm : MonoBehaviour {
         gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
 
         bombRef = gameObject.transform.GetChild(2).gameObject.transform;
-
     }
 
     void FixedUpdate () {
@@ -54,6 +59,7 @@ public class PlayerArm : MonoBehaviour {
             timer = 0f;
             // set active arm
             if (!gunActive) arm.SetActive(true);
+            else if (bm.CurrentAmmo() <= 0) GuardalaGun();
             else DisparalaGun();
         }
 
@@ -70,10 +76,10 @@ public class PlayerArm : MonoBehaviour {
         }
 
         // lanzar bomba
-        if (Input.GetButtonDown("P" + playerN + "B"))
-        {
-            LanzaBomba();
-        }
+        //if (Input.GetButtonDown("P" + playerN + "B"))
+        //{
+        //    LanzaBomba();
+        //}
 
 
 
@@ -99,6 +105,10 @@ public class PlayerArm : MonoBehaviour {
         shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
 
         instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
+
+        bm.Shot();
+
+       
 
     }
     void GuardalaGun()
@@ -133,4 +143,11 @@ public class PlayerArm : MonoBehaviour {
 
         }
     }
+
+    public bool GunIsActive()
+    {
+        return gunActive;
+    }
+    
+
 }
