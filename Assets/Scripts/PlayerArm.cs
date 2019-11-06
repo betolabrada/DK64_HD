@@ -5,74 +5,82 @@ using UnityEngine.UI;
 
 public class PlayerArm : MonoBehaviour {
 
-    // todos los ataques de player: Arm, Gun y Bomb
+    // todos los ataques de player: Arm, Gun, Bomb y Gun Chida
 
-    public int danioDeGolpe = 2;
-    public float tiempoEntreGolpes = 0.25f;
-    public int playerN;
     public GameObject bala;
     public GameObject bomb;
 
-    public Text balaText;   
-    Rigidbody playerRigidbody;
-    
+    float tiempoConArmaChida = 10f;
+    int playerN;
+    int danioDeGolpe = 2;
+
     PlayerMov playerMov;
     PlayerHealth playerHealth;
     BalasManager bm;
+    ArmaChidaEnMapa acem;
 
-    float timer;
-
+    // children
     GameObject arm;
     GameObject gun;
-    Transform gunRef;
+    GameObject bombRef; // despues
+    GameObject gunChida;
 
-    Transform bombRef;
+    Transform gunRef;
+    Transform gunChidaRef;
 
     bool gunActive = false;
+    bool gunChidaActive = false;
 
+    float timer;
+    float tiempoEntreGolpes = 0.25f;
+    float gunChidaTimer;
 
     void Awake()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
         playerMov = GetComponent<PlayerMov>();
         playerHealth = GetComponent<PlayerHealth>();
         bm = GetComponent<BalasManager>();
+        acem = GameObject.Find("Suelo").GetComponent<ArmaChidaEnMapa>();
+
 
         playerN = playerMov.playerN;
-        playerRigidbody = GetComponent<Rigidbody>();
 
         arm = gameObject.transform.GetChild(0).gameObject;
         gun = gameObject.transform.GetChild(1).gameObject;
-        gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
+        bombRef = gameObject.transform.GetChild(2).gameObject;
+        gunChida = gameObject.transform.GetChild(3).gameObject;
 
-        bombRef = gameObject.transform.GetChild(2).gameObject.transform;
+
+        gunRef = gun.gameObject.transform.GetChild(0).gameObject.transform;
+        gunChidaRef = gunChida.transform.GetChild(2).gameObject.transform;
+
+
     }
 
     void FixedUpdate () {
 
         timer += Time.deltaTime;
-        //print(timer);
 
-        // golpear o disparar
+        // golpear o disparar si arma esta activa
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
-            // set active arm
-            if (!gunActive) arm.SetActive(true);
-            else if (bm.CurrentAmmo() <= 0) GuardalaGun();
-            else DisparalaGun();
+            if (!gunActive && !gunChidaActive) arm.SetActive(true);
+            else if (gunActive && bm.CurrentAmmo() <= 0) ToggleGun();
+            else if (gunActive) DisparalaGun();
+            else DisparalaGunChida();
         }
 
+        // timer para golpes
         if (timer >= tiempoEntreGolpes)
         {
             arm.SetActive(false);
         }
 
-        // sacar arma
-        if (Input.GetButtonDown("P" + playerN + "P"))
+        // sacar o guardar arma
+        if (Input.GetButtonDown("P" + playerN + "P") && !gunChidaActive)
         {
-            if (!gunActive) SacalaGun();
-            else GuardalaGun();
+            ToggleGun();
         }
 
         // lanzar bomba
@@ -81,6 +89,21 @@ public class PlayerArm : MonoBehaviour {
         //    LanzaBomba();
         //}
 
+        // arma chida tiempo
+        if (gunChidaActive)
+        {
+            gunChidaTimer += Time.deltaTime;
+            print(gunChidaTimer);
+            if (gunChidaTimer >= tiempoConArmaChida)
+            {
+                gunChidaActive = false;
+                gunChida.SetActive(false);
+                gunChidaTimer = 0f;
+                acem.armaChidaStillThere = false;
+                acem.ResetTimerArmaRespawn();
+            }
+        }
+
 
 
 
@@ -88,7 +111,7 @@ public class PlayerArm : MonoBehaviour {
 
     void LanzaBomba()
     {
-        GameObject instBomba = Instantiate(bomb, bombRef.position, Quaternion.identity);
+        GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
         Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
 
 
@@ -107,27 +130,20 @@ public class PlayerArm : MonoBehaviour {
         instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
 
         bm.Shot();
-
-       
-
     }
-    void GuardalaGun()
+
+    void DisparalaGunChida()
     {
-        gun.SetActive(false);
-        gunActive = false;
-        playerMov.speed = 15f;
-    }
+        GameObject instBala = Instantiate(bala, gunChidaRef.position, Quaternion.identity);
+        Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
+        Bullet instBalaScript = instBala.GetComponent<Bullet>();
+        instBalaScript.SetFather(gameObject);
+        Vector3 shootVec = instBala.transform.forward;
+        shootVec = Quaternion.Euler(0f, gunChida.transform.eulerAngles.y - 90, 0f) * shootVec;
 
-    void SacalaGun()
-    {
-        if (!gunActive)
-        {
-            gun.SetActive(true);
-            gunActive = true;
-        }
-        playerMov.speed = 7.5f;
-    }
+        instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
 
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -142,12 +158,38 @@ public class PlayerArm : MonoBehaviour {
             playerHealth.HacerDanio(danioDeGolpe);
 
         }
+
+        if (other.gameObject.tag == "GunChida")
+        {
+            ToggleGunChida();
+            Destroy(other.gameObject);
+        }
     }
 
     public bool GunIsActive()
     {
         return gunActive;
     }
-    
+
+    void ToggleGunChida()
+    {
+        gun.SetActive(false);
+        gunActive = false;
+        gunChida.SetActive(!gunChidaActive);
+        gunChidaActive = !gunChidaActive;
+        playerMov.speed = !gunChidaActive ? 10f : 8.5f;
+
+
+    }
+
+    void ToggleGun()
+    {
+        gun.SetActive(!gunActive);
+        gunActive = !gunActive;
+        playerMov.speed = !gunActive ? 10f : 7.5f;
+
+
+    }
+
 
 }

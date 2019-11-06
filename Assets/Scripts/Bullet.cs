@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && other.gameObject != father)
         {
+            if (father.gameObject.tag == "GunChida")
+                danioDeBala = 3;
             print("collision");
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
             otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
@@ -28,6 +30,8 @@ public class Bullet : MonoBehaviour {
                 Destroy(other.gameObject);
             }
             otherPlayerHealth.HacerDanio(danioDeBala);
+
+            Destroy(gameObject);
 
         }
     }
