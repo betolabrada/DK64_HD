@@ -136,7 +136,7 @@ public class PlayerArm : MonoBehaviour {
         GameObject instBala = Instantiate(bala, gunChidaRef.position, Quaternion.identity);
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
         Bullet instBalaScript = instBala.GetComponent<Bullet>();
-        instBalaScript.SetFather(gameObject);
+        instBalaScript.SetFather(gunChida);
         Vector3 shootVec = instBala.transform.forward;
         shootVec = Quaternion.Euler(0f, gunChida.transform.eulerAngles.y - 90, 0f) * shootVec;
 

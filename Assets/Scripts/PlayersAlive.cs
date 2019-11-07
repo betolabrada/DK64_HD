@@ -38,6 +38,7 @@ public class PlayersAlive : MonoBehaviour {
 			//print("GANASTE JUGADOR " + ganador);
 			winPanel.SetActive(true);
 			winText.text = ("GANASTE JUGADOR " + ganador);
+			Time.timeScale = 0;
 		}
 	}
 

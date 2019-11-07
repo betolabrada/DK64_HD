@@ -18,9 +18,12 @@ public class Bullet : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && other.gameObject != father)
         {
-            if (father.gameObject.tag == "GunChida")
+            if (father.gameObject.tag == "GunChida"){
                 danioDeBala = 3;
-            print("collision");
+                print("collision");
+            } else{
+                danioDeBala = 1;
+            }
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
             otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
 
@@ -44,5 +47,6 @@ public class Bullet : MonoBehaviour {
     public void SetFather(GameObject f)
     {
         father = f;
+        print(father);
     }
 }
