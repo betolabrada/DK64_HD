@@ -30,6 +30,11 @@ public class Barril : MonoBehaviour {
                 playerHealth.HacerDanio(danioBarril);
             }
         }
+        if (collision.gameObject.tag == ("Bullet"))
+        {
+            rb.AddExplosionForce(power, transform.position, radius, 3.0F, ForceMode.Impulse);
+            Destroy(gameObject, 3);
+        }
         if (collision.gameObject.layer == 11){
             rb.AddExplosionForce(power, transform.position, radius, 3.0F, ForceMode.Impulse);
             Destroy(gameObject, 3);

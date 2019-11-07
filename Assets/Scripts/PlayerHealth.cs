@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour {
     public int recuperacion = 2;
     public float tiempoSinDanio = 3f;
 
+    PlayersAlive playersAlive;
     float timer;
     PlayerMov playerMov;
     bool danio;
@@ -22,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
         playerAudio = GetComponent<AudioSource>();
         saludActual = saludInicial;
         estaMuerto = false;
-
+        playersAlive = GameObject.Find("World").GetComponent<PlayersAlive>();
         playerMov = GetComponent<PlayerMov>();        
     }
 
@@ -63,6 +64,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         estaMuerto = true;
         playerMov.enabled = false;
+        playersAlive.DecreseCount();
         Destroy(gameObject);
     }
 

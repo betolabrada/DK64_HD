@@ -8,6 +8,7 @@ public class PlayerMov : MonoBehaviour {
     public int playerN;
     bool estaEnPiso;
 
+    private Quaternion originalRotation;
     Rigidbody playerRigidbody;
     Vector3 movement;
 
@@ -15,6 +16,7 @@ public class PlayerMov : MonoBehaviour {
     void Start () {
         estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
+        originalRotation = transform.rotation;
 	}
 
     // Update is called once per frame
@@ -30,15 +32,18 @@ public class PlayerMov : MonoBehaviour {
         float ry = Input.GetAxis("P" + playerN + "RY");
         if (Input.GetButton("P" + playerN + "RX"))
         {
-            print("sadsa");
             transform.Rotate(0, 0, rx * Time.deltaTime * 1000);
         }
         if (Input.GetButton("P" + playerN + "RY"))
         {
-            print("sadssadsadasa");
             transform.Rotate(0, ry * Time.deltaTime * 1000, 0);
         }
 
+        if(Input.GetKeyDown("joystick " + playerN + " button 6")){
+            print("asdasd");
+            print(originalRotation);
+            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * 1.0f);
+        }
         /*
         transform.Rotate(Vector3.up, -100 * Time.deltaTime);
         if (Input.GetKey(KeyCode.RightArrow))
@@ -47,7 +52,7 @@ public class PlayerMov : MonoBehaviour {
 
         
         Move(h, v);
-        transform.Rotate(0, rx * Time.deltaTime * 1000, ry * Time.deltaTime * 1000);
+        transform.Rotate(0, rx * Time.deltaTime * 100, ry * Time.deltaTime * 100);
     }
 
     void FixedUpdate()
@@ -68,7 +73,7 @@ public class PlayerMov : MonoBehaviour {
         movement = movement.normalized * speed * Time.deltaTime;
 
         //playerRigidbody.MovePosition(transform.position + movement);
-        transform.LookAt(movement + transform.position);
+        //transform.LookAt(movement + transform.position);
         transform.Translate(movement, Space.World);
     }
 

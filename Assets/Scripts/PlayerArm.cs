@@ -34,14 +34,13 @@ public class PlayerArm : MonoBehaviour {
     float timer;
     float tiempoEntreGolpes = 0.25f;
     float gunChidaTimer;
-
+    public AudioClip armaChida;
     void Awake()
     {
         playerMov = GetComponent<PlayerMov>();
         playerHealth = GetComponent<PlayerHealth>();
         bm = GetComponent<BalasManager>();
         acem = GameObject.Find("Suelo").GetComponent<ArmaChidaEnMapa>();
-
 
         playerN = playerMov.playerN;
 
@@ -93,7 +92,7 @@ public class PlayerArm : MonoBehaviour {
         if (gunChidaActive)
         {
             gunChidaTimer += Time.deltaTime;
-            print(gunChidaTimer);
+            //print(gunChidaTimer);
             if (gunChidaTimer >= tiempoConArmaChida)
             {
                 gunChidaActive = false;
@@ -161,6 +160,9 @@ public class PlayerArm : MonoBehaviour {
 
         if (other.gameObject.tag == "GunChida")
         {
+            AudioSource sonido = gameObject.GetComponent<AudioSource>();
+            print(sonido);
+            sonido.PlayOneShot(armaChida, 1.0f);
             ToggleGunChida();
             Destroy(other.gameObject);
         }

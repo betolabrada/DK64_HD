@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 	public void CambiarEscena(){
+		SceneManager.LoadScene("FirstMap");
+	}
+
+	public void ModoDummy(){
 		SceneManager.LoadScene("SampleScene");
 	}
 

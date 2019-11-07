@@ -34,6 +34,11 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
 
         }
+
+        if (other.gameObject.tag == "Untagged" && other.gameObject != father)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetFather(GameObject f)
