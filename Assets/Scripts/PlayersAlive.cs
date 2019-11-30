@@ -15,7 +15,7 @@ public class PlayersAlive : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		alive = 4;
-		P1 =  GameObject.Find("Player").GetComponent<PlayerHealth>();
+		P1 =  GameObject.Find("Player1").GetComponent<PlayerHealth>();
 		P2 =  GameObject.Find("Player2").GetComponent<PlayerHealth>();
 		P3 =  GameObject.Find("Player3").GetComponent<PlayerHealth>();
 		P4 =  GameObject.Find("Player4").GetComponent<PlayerHealth>();

@@ -119,6 +119,7 @@ public class PlayerArm : MonoBehaviour {
 
     void DisparalaGun()
     {
+        print("disparando");
         GameObject instBala = Instantiate(bala, gunRef.position, Quaternion.identity);
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
         Bullet instBalaScript = instBala.GetComponent<Bullet>();
@@ -160,11 +161,13 @@ public class PlayerArm : MonoBehaviour {
 
         if (other.gameObject.tag == "GunChida")
         {
-            AudioSource sonido = gameObject.GetComponent<AudioSource>();
-            print(sonido);
-            sonido.PlayOneShot(armaChida, 1.0f);
-            ToggleGunChida();
-            Destroy(other.gameObject);
+            if (!gunChidaActive) {
+                AudioSource sonido = gameObject.GetComponent<AudioSource>();
+                print(sonido);
+                sonido.PlayOneShot(armaChida, 1.0f);
+                ToggleGunChida();
+                Destroy(other.gameObject);
+            }
         }
     }
 
@@ -178,6 +181,7 @@ public class PlayerArm : MonoBehaviour {
         gun.SetActive(false);
         gunActive = false;
         gunChida.SetActive(!gunChidaActive);
+        gunChida.GetComponent<BoxCollider>().enabled = false;
         gunChidaActive = !gunChidaActive;
         playerMov.speed = !gunChidaActive ? 10f : 8.5f;
 
