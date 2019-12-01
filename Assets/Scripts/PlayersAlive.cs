@@ -8,17 +8,17 @@ public class PlayersAlive : MonoBehaviour {
 
 	private int alive;
 	PlayerHealth P1, P2, P3, P4;
-	private int ganador;
+	private string ganador;
 
 	public GameObject winPanel;
 	public Text winText;
 	// Use this for initialization
 	void Start () {
 		alive = 4;
-		P1 =  GameObject.Find("Player1").GetComponent<PlayerHealth>();
-		P2 =  GameObject.Find("Player2").GetComponent<PlayerHealth>();
-		P3 =  GameObject.Find("Player3").GetComponent<PlayerHealth>();
-		P4 =  GameObject.Find("Player4").GetComponent<PlayerHealth>();
+		P1 =  GameObject.Find("PlayerDonkey").GetComponent<PlayerHealth>();
+		P2 =  GameObject.Find("PlayerDiddy").GetComponent<PlayerHealth>();
+		P3 =  GameObject.Find("PlayerDixie").GetComponent<PlayerHealth>();
+		P4 =  GameObject.Find("PlayerChunky").GetComponent<PlayerHealth>();
 		
 	}
 	
@@ -27,17 +27,17 @@ public class PlayersAlive : MonoBehaviour {
 		
 		if(alive == 1){
 			if(!P1.estaMuerto){
-				ganador = 1;
+				ganador = "DONKEY";
 			} else if(!P2.estaMuerto){
-				ganador = 2;
+				ganador = "DIDDY";
 			} else if(!P3.estaMuerto){
-				ganador = 3;
+				ganador = "DIXIE";
 			} else if(!P4.estaMuerto){
-				ganador = 4;
+				ganador = "CHUNKY";
 			}
 			//print("GANASTE JUGADOR " + ganador);
 			winPanel.SetActive(true);
-			winText.text = ("GANASTE JUGADOR " + ganador);
+			winText.text = ("GANASTE " + ganador);
 			//Time.timeScale = 0;
 		}
 	}
