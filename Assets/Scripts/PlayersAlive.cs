@@ -9,7 +9,7 @@ public class PlayersAlive : MonoBehaviour {
 	private int alive;
 	PlayerHealth P1, P2, P3, P4;
     PlayerMov P1Hill, P2Hill, P3Hill, P4Hill;
-    private int ganador;
+    private string ganador;
 
 	public GameObject winPanel;
 	public Text winText;
@@ -49,7 +49,7 @@ public class PlayersAlive : MonoBehaviour {
 
         if (P1Hill.hillPoints > 200)
         {
-            ganador = 1;
+            ganador = "DONKEY";
             //print("GANASTE JUGADOR " + ganador);
             winPanel.SetActive(true);
             winText.text = ("GANASTE JUGADOR " + ganador);
@@ -58,7 +58,7 @@ public class PlayersAlive : MonoBehaviour {
 
         if (P2Hill.hillPoints > 200)
         {
-            ganador = 2;
+            ganador = "DIDDY";
             //print("GANASTE JUGADOR " + ganador);
             winPanel.SetActive(true);
             winText.text = ("GANASTE JUGADOR " + ganador);
@@ -67,7 +67,7 @@ public class PlayersAlive : MonoBehaviour {
 
         if (P3Hill.hillPoints > 200)
         {
-            ganador = 3;
+            ganador = "DIXIE";
             //print("GANASTE JUGADOR " + ganador);
             winPanel.SetActive(true);
             winText.text = ("GANASTE JUGADOR " + ganador);
@@ -76,7 +76,7 @@ public class PlayersAlive : MonoBehaviour {
 
         if (P4Hill.hillPoints > 200)
         {
-            ganador = 4;
+            ganador = "CHUNKY";
             //print("GANASTE JUGADOR " + ganador);
             winPanel.SetActive(true);
             winText.text = ("GANASTE JUGADOR " + ganador);
