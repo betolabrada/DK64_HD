@@ -9,7 +9,7 @@ public class PlayerArm : MonoBehaviour {
 
     public GameObject bala;
     public GameObject bomb;
-
+    public Animator animator;
     float tiempoConArmaChida = 10f;
     int playerN;
     int danioDeGolpe = 2;
@@ -32,7 +32,7 @@ public class PlayerArm : MonoBehaviour {
     bool gunChidaActive = false;
 
     float timer;
-    float tiempoEntreGolpes = 0.25f;
+    float tiempoEntreGolpes = 0.55f;
     float gunChidaTimer;
     public AudioClip armaChida;
     void Awake()
@@ -64,7 +64,7 @@ public class PlayerArm : MonoBehaviour {
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
-            if (!gunActive && !gunChidaActive) arm.SetActive(true);
+            if (!gunActive && !gunChidaActive) {arm.SetActive(true); animator.SetTrigger("Punch");}
             else if (gunActive && bm.CurrentAmmo() <= 0) ToggleGun();
             else if (gunActive) DisparalaGun();
             else DisparalaGunChida();

@@ -15,6 +15,7 @@ public class PlayerMov : MonoBehaviour {
     Rigidbody playerRigidbody;
     Vector3 movement;
 
+    public Animator animator;
     // Use this for initialization
     void Start () {
         estaEnPiso = true;
@@ -71,19 +72,27 @@ public class PlayerMov : MonoBehaviour {
 
     void Move(float h, float v)
     {
+        if(v != 0 | h!=0){
+            animator.SetBool("Run", true);
+        }else{
+            animator.SetBool("Run", false);
+        }
         movement.Set(h, 0f, v);
-
+        
         // normalize
         movement = movement.normalized * speed * Time.deltaTime;
 
         //playerRigidbody.MovePosition(transform.position + movement);
         //transform.LookAt(movement + transform.position);
         transform.Translate(movement);
+        
+        
     }
 
     void Jump()
     {
         playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+        animator.SetTrigger("Jump");
     }
 
     void OnCollisionEnter(Collision collision)

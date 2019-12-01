@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour {
     public float tiempoSinDanio = 3f;
     public Color colorDanio = new Color(1f, 0f, 0f, 0.1f);
     public float flashSpeed = 5f;
-
+    public Animator animator;
     PlayersAlive playersAlive;
     float timer;
     PlayerMov playerMov;
@@ -86,10 +86,12 @@ public class PlayerHealth : MonoBehaviour {
 
     void Muerte()
     {
+        animator.SetBool("IsDead", true);
         estaMuerto = true;
         playerMov.enabled = false;
         playersAlive.DecreseCount();
         Destroy(gameObject);
+        
     }
 
     IEnumerator Recuperacion() 
