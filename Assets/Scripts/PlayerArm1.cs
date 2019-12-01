@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerArm : MonoBehaviour {
+public class PlayerArm1 : MonoBehaviour {
 
     // todos los ataques de player: Arm, Gun, Bomb y Gun Chida
 
@@ -12,7 +12,7 @@ public class PlayerArm : MonoBehaviour {
 
     float tiempoConArmaChida = 10f;
     int playerN;
-    int danioDeGolpe = 2;
+    int danioDeGolpe = 100;
 
     PlayerMov playerMov;
     PlayerHealth playerHealth;
@@ -33,7 +33,7 @@ public class PlayerArm : MonoBehaviour {
     bool gunChidaActive = false;
 
     float timer;
-    float tiempoEntreGolpes = 0.25f;
+    float tiempoEntreGolpes = 0.15f;
     float gunChidaTimer;
     public AudioClip armaChida;
     void Awake()
@@ -65,10 +65,8 @@ public class PlayerArm : MonoBehaviour {
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
-            if (!gunActive && !gunChidaActive) arm.SetActive(true);
-            else if (gunActive && bm.CurrentAmmo() <= 0) ToggleGun();
-            else if (gunActive) DisparalaGun();
-            else DisparalaGunChida();
+            arm.SetActive(true);
+           
         }
 
         // timer para golpes
@@ -80,7 +78,7 @@ public class PlayerArm : MonoBehaviour {
         // sacar o guardar arma
         if (Input.GetButtonDown("P" + playerN + "P") && !gunChidaActive)
         {
-            ToggleGun();
+           
         }
 
         // lanzar bomba

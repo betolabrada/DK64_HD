@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMov : MonoBehaviour {
-
+public class PlayerMov : MonoBehaviour
+{
+    private Hill hill;
     public float speed;
     public int playerN;
+    public int hillPoints;
     bool estaEnPiso;
 
     private Quaternion originalRotation;
@@ -13,14 +15,17 @@ public class PlayerMov : MonoBehaviour {
     Vector3 movement;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
         originalRotation = transform.rotation;
-	}
+        this.hillPoints = 0;
+    }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         float h = Input.GetAxisRaw("P" + playerN + "H");
         float v = Input.GetAxisRaw("P" + playerN + "V");
 
@@ -39,7 +44,8 @@ public class PlayerMov : MonoBehaviour {
             transform.Rotate(0, ry * Time.deltaTime * 1000, 0);
         }
 
-        if(Input.GetKeyDown("joystick " + playerN + " button 6")){
+        if (Input.GetKeyDown("joystick " + playerN + " button 6"))
+        {
             print("asdasd");
             print(originalRotation);
             transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * 1.0f);
@@ -50,7 +56,7 @@ public class PlayerMov : MonoBehaviour {
             transform.Rotate(Vector3.up, 100 * Time.deltaTime);
         */
 
-        
+
         Move(h, v);
         transform.Rotate(0, rx * Time.deltaTime * 100, ry * Time.deltaTime * 100);
     }
@@ -96,4 +102,19 @@ public class PlayerMov : MonoBehaviour {
         }
     }
 
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "hill")
+        {
+            hill = collision.gameObject.GetComponent<Hill>();
+            print(hill.playersOnHill);
+            if (hill.playersOnHill == 1)
+            {
+                this.hillPoints ++;
+                print(hillPoints);
+
+            }
+
+        }
+    }
 }

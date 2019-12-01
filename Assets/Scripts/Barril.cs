@@ -6,7 +6,7 @@ public class Barril : MonoBehaviour {
     private Rigidbody rb;
     public float radius = 5.0F;
     public float power = 10.0F;
-    public int danioBarril = 2;
+    public int danioBarril = 20;
 
     GameObject player;
     PlayerHealth playerHealth;
@@ -18,6 +18,8 @@ public class Barril : MonoBehaviour {
     }
     void Start () {
         rb = GetComponent<Rigidbody>();
+       
+    
     }
 
     void OnCollisionEnter(Collision collision)

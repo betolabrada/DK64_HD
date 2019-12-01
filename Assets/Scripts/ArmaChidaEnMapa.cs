@@ -15,7 +15,6 @@ public class ArmaChidaEnMapa : MonoBehaviour {
     GameObject instArmaChida;
 
     void Update () {
-
         timer += Time.deltaTime;
         if (timer >= 10f)
         {
