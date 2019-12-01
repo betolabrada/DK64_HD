@@ -60,6 +60,16 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
+    public void RecuperarVida(int vida)
+    {
+        for (int i = 0; i < vida && saludActual < saludInicial; i++)
+        {
+            saludActual += vida;
+            sliderSalud.value = saludActual;
+        }
+        
+    }
+
     void Muerte()
     {
         estaMuerto = true;

@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CajitaMov : MonoBehaviour {
-
+public class CajitaVida : MonoBehaviour
+{
+    public int valor = 1;
     AudioSource audioSrc;
+    
 
-	void Update()
+    void Update()
     {
         audioSrc = GetComponent<AudioSource>();
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        
+
     }
 
 
@@ -18,10 +20,8 @@ public class CajitaMov : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            BalasManager bm = other.gameObject.GetComponent<BalasManager>();
-            PlayerArm pa = other.gameObject.GetComponent<PlayerArm>();
             audioSrc.Play();
-            bm.StartCoroutine("RechargeGun");
+            other.gameObject.GetComponent<PlayerHealth>().RecuperarVida(valor);
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             StartCoroutine("Respawn");

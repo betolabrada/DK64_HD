@@ -83,10 +83,10 @@ public class PlayerArm : MonoBehaviour {
         }
 
         // lanzar bomba
-        //if (Input.GetButtonDown("P" + playerN + "B"))
-        //{
-        //    LanzaBomba();
-        //}
+        if (Input.GetButtonDown("P" + playerN + "B"))
+        {
+            LanzaBomba();
+        }
 
         // arma chida tiempo
         if (gunChidaActive)
@@ -114,7 +114,7 @@ public class PlayerArm : MonoBehaviour {
         Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
 
 
-        instBombaRigidbody.AddForce(instBomba.transform.up * 10f, ForceMode.Impulse);
+        instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
     }
 
     void DisparalaGun()
