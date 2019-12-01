@@ -40,6 +40,15 @@ public class Menu : MonoBehaviour {
 		SceneManager.LoadScene("SampleScene");
 	}
 
+	public void ReiniciarEscena(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void MainMenu(){
+		SceneManager.LoadScene("MenuPrincipal");
+		
+	}
+
 	public void SalirJuego(){
 		Debug.Log("uihdsuf");
 		//Application.Quit();
