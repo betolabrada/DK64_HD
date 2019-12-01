@@ -174,6 +174,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224345574227006218}
   - component: {fileID: 20457349008287474}
+  - component: {fileID: 222480442007574566}
+  - component: {fileID: 114322195972794956}
   m_Layer: 13
   m_Name: CamPlayer
   m_TagString: Untagged
@@ -244,7 +246,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1733304105448600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
   m_LocalPosition: {x: -26.77, y: 0.6724998, z: -14.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -649,8 +651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03261b5ddc3f7e945b54a51b3f7a1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bala: {fileID: 1132626161590398, guid: 1fac1426c01db9c49aaad189a532dbe7, type: 2}
+  bala: {fileID: 1930074273373862, guid: 751b5b8870b15b441854a65ee639189a, type: 2}
   bomb: {fileID: 1631715987319584, guid: df7509565dd2dc6408792281a7cbf554, type: 2}
+  animator: {fileID: 0}
   armaChida: {fileID: 8300000, guid: 6dc3bd1397d68c9428e16f37a822d6c7, type: 3}
 --- !u!114 &114176666261593096
 MonoBehaviour:
@@ -665,6 +668,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   estaEnPiso: 0
+--- !u!114 &114322195972794956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853903168802942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7735849, g: 0.12041653, b: 0.12041653, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114584483979157026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -679,6 +709,7 @@ MonoBehaviour:
   speed: 7.5
   rotSpeed: 100
   playerN: 1
+  animator: {fileID: 0}
 --- !u!114 &114684008486864258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,6 +739,9 @@ MonoBehaviour:
   sliderSalud: {fileID: 0}
   recuperacion: 2
   tiempoSinDanio: 3
+  colorDanio: {r: 1, g: 0, b: 0, a: 0.1}
+  flashSpeed: 5
+  animator: {fileID: 0}
   estaMuerto: 0
 --- !u!136 &136091142402032576
 CapsuleCollider:
@@ -786,6 +820,13 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.16761026, y: -0.01358749, z: 0.0011581667}
     m_Extent: {x: 0.37155584, y: 0.13115989, z: 0.082435906}
   m_DirtyAABB: 0
+--- !u!222 &222480442007574566
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853903168802942}
+  m_CullTransparentMesh: 0
 --- !u!222 &222984647643832632
 CanvasRenderer:
   m_ObjectHideFlags: 1
