@@ -9,7 +9,7 @@ public class PlayerArm : MonoBehaviour {
 
     public GameObject bala;
     public GameObject bomb;
-
+    public Animator animator;
     float tiempoConArmaChida = 10f;
     int playerN;
     int danioDeGolpe = 2;
@@ -33,7 +33,7 @@ public class PlayerArm : MonoBehaviour {
     bool gunChidaActive = false;
 
     float timer;
-    float tiempoEntreGolpes = 0.25f;
+    float tiempoEntreGolpes = 0.55f;
     float gunChidaTimer;
     public AudioClip armaChida;
     void Awake()
@@ -65,7 +65,7 @@ public class PlayerArm : MonoBehaviour {
         if (Input.GetButtonDown("P" + playerN + "F"))
         {
             timer = 0f;
-            if (!gunActive && !gunChidaActive) arm.SetActive(true);
+            if (!gunActive && !gunChidaActive) {arm.SetActive(true); animator.SetTrigger("Punch");}
             else if (gunActive && bm.CurrentAmmo() <= 0) ToggleGun();
             else if (gunActive) DisparalaGun();
             else DisparalaGunChida();
@@ -84,10 +84,10 @@ public class PlayerArm : MonoBehaviour {
         }
 
         // lanzar bomba
-        //if (Input.GetButtonDown("P" + playerN + "B"))
-        //{
-        //    LanzaBomba();
-        //}
+        if (Input.GetButtonDown("P" + playerN + "B"))
+        {
+            LanzaBomba();
+        }
 
         // arma chida tiempo
         if (gunChidaActive)
@@ -115,11 +115,12 @@ public class PlayerArm : MonoBehaviour {
         Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
 
 
-        instBombaRigidbody.AddForce(instBomba.transform.up * 10f, ForceMode.Impulse);
+        instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
     }
 
     void DisparalaGun()
     {
+        print("disparando");
         GameObject instBala = Instantiate(bala, gunRef.position, Quaternion.identity);
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
         Bullet instBalaScript = instBala.GetComponent<Bullet>();
@@ -165,7 +166,7 @@ public class PlayerArm : MonoBehaviour {
             print(sonido);
             sonido.PlayOneShot(armaChida, 1.0f);
             ToggleGunChida();
-            Destroy(other.gameObject); 
+            Destroy(other.gameObject);
         }
     }
 
@@ -179,6 +180,7 @@ public class PlayerArm : MonoBehaviour {
         gun.SetActive(false);
         gunActive = false;
         gunChida.SetActive(!gunChidaActive);
+        gunChida.GetComponent<BoxCollider>().enabled = false;
         gunChidaActive = !gunChidaActive;
         playerMov.speed = !gunChidaActive ? 10f : 8.5f;
 

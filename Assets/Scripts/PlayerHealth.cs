@@ -9,7 +9,9 @@ public class PlayerHealth : MonoBehaviour {
     public Slider sliderSalud;
     public int recuperacion = 2;
     public float tiempoSinDanio = 3f;
-
+    public Color colorDanio = new Color(1f, 0f, 0f, 0.1f);
+    public float flashSpeed = 5f;
+    public Animator animator;
     PlayersAlive playersAlive;
     float timer;
     PlayerMov playerMov;
@@ -17,6 +19,8 @@ public class PlayerHealth : MonoBehaviour {
     public bool estaMuerto;
     AudioSource playerAudio;
     bool hayCoroutine = false;
+    MeshRenderer materialRenderer;
+    Color playerOriginalColor;
     
     void Start()
     {
@@ -24,7 +28,9 @@ public class PlayerHealth : MonoBehaviour {
         saludActual = saludInicial;
         estaMuerto = false;
         playersAlive = GameObject.Find("World").GetComponent<PlayersAlive>();
-        playerMov = GetComponent<PlayerMov>();        
+        playerMov = GetComponent<PlayerMov>();
+        materialRenderer = GetComponent<MeshRenderer>();
+        playerOriginalColor = materialRenderer.material.color;
     }
 
     void Update()
@@ -36,8 +42,16 @@ public class PlayerHealth : MonoBehaviour {
             timer = 0f;
             StopCoroutine("Recuperacion");
             hayCoroutine = false;
+            materialRenderer.material.color = colorDanio;
         }
-        if(gameObject.layer == 14)
+
+        else
+        {
+            materialRenderer.material.color = Color.Lerp(materialRenderer.material.color, playerOriginalColor, 
+                flashSpeed * Time.deltaTime);
+
+        }
+        if (gameObject.layer == 14)
         {
             if (saludActual < saludInicial && timer > tiempoSinDanio && !hayCoroutine)
             {
@@ -60,12 +74,24 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
+    public void RecuperarVida(int vida)
+    {
+        for (int i = 0; i < vida && saludActual < saludInicial; i++)
+        {
+            saludActual += vida;
+            sliderSalud.value = saludActual;
+        }
+        
+    }
+
     void Muerte()
     {
+        animator.SetBool("IsDead", true);
         estaMuerto = true;
         playerMov.enabled = false;
         playersAlive.DecreseCount();
         Destroy(gameObject);
+        
     }
 
     IEnumerator Recuperacion() 

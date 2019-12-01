@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 54449300272256260}
   - component: {fileID: 65046473538423382}
   - component: {fileID: 82134101527332900}
+  - component: {fileID: 23752523314386014}
   m_Layer: 0
   m_Name: ArmaChida
   m_TagString: GunChida
@@ -68,6 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4894823955158708}
+  - component: {fileID: 114229122429703430}
   m_Layer: 0
   m_Name: Dummy002
   m_TagString: Untagged
@@ -161,6 +163,41 @@ Transform:
   m_Father: {fileID: 4709315080608340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23752523314386014
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347629311143790}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!54 &54449300272256260
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -174,7 +211,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &65046473538423382
 BoxCollider:
@@ -283,6 +320,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114229122429703430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718352508889694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe59dda13faf72428a4e11ad6236aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137868167520926558
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

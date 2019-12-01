@@ -27,23 +27,23 @@ public class PlayersAlive : MonoBehaviour {
         P4Hill = GameObject.Find("Player4").GetComponent<PlayerMov>();
 
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 		if(alive == 1){
 			if(!P1.estaMuerto){
-				ganador = 1;
+				ganador = "DONKEY";
 			} else if(!P2.estaMuerto){
-				ganador = 2;
+				ganador = "DIDDY";
 			} else if(!P3.estaMuerto){
-				ganador = 3;
+				ganador = "DIXIE";
 			} else if(!P4.estaMuerto){
-				ganador = 4;
+				ganador = "CHUNKY";
 			}
 			//print("GANASTE JUGADOR " + ganador);
 			winPanel.SetActive(true);
-			winText.text = ("GANASTE JUGADOR " + ganador);
+			winText.text = ("GANASTE " + ganador);
 			//Time.timeScale = 0;
 		}
 

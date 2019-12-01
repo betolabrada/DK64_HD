@@ -6,6 +6,7 @@ public class PlayerMov : MonoBehaviour
 {
     private Hill hill;
     public float speed;
+    public float rotSpeed = 100f;
     public int playerN;
     public int hillPoints;
     bool estaEnPiso;
@@ -14,6 +15,7 @@ public class PlayerMov : MonoBehaviour
     Rigidbody playerRigidbody;
     Vector3 movement;
 
+    public Animator animator;
     // Use this for initialization
     void Start()
     {
@@ -37,15 +39,14 @@ public class PlayerMov : MonoBehaviour
         float ry = Input.GetAxis("P" + playerN + "RY");
         if (Input.GetButton("P" + playerN + "RX"))
         {
-            transform.Rotate(0, 0, rx * Time.deltaTime * 1000);
+            transform.Rotate(0, 0, rx * Time.deltaTime * rotSpeed);
         }
         if (Input.GetButton("P" + playerN + "RY"))
         {
-            transform.Rotate(0, ry * Time.deltaTime * 1000, 0);
+            transform.Rotate(0, ry * Time.deltaTime * rotSpeed, 0);
         }
 
-        if (Input.GetKeyDown("joystick " + playerN + " button 6"))
-        {
+        if(Input.GetKeyDown("joystick " + playerN + " button 6") || Input.GetKeyDown(KeyCode.S) ){
             print("asdasd");
             print(originalRotation);
             transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * 1.0f);
@@ -58,7 +59,8 @@ public class PlayerMov : MonoBehaviour
 
 
         Move(h, v);
-        transform.Rotate(0, rx * Time.deltaTime * 100, ry * Time.deltaTime * 100);
+
+        //transform.Rotate(0, rx * Time.deltaTime * 100, ry * Time.deltaTime * 100);
     }
 
     void FixedUpdate()
@@ -73,6 +75,11 @@ public class PlayerMov : MonoBehaviour
 
     void Move(float h, float v)
     {
+        if(v != 0 | h!=0){
+            animator.SetBool("Run", true);
+        }else{
+            animator.SetBool("Run", false);
+        }
         movement.Set(h, 0f, v);
 
         // normalize
@@ -80,12 +87,15 @@ public class PlayerMov : MonoBehaviour
 
         //playerRigidbody.MovePosition(transform.position + movement);
         //transform.LookAt(movement + transform.position);
-        transform.Translate(movement, Space.World);
+        transform.Translate(movement);
+
+
     }
 
     void Jump()
     {
         playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+        animator.SetTrigger("Jump");
     }
 
     void OnCollisionEnter(Collision collision)

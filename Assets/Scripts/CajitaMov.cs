@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CajitaMov : MonoBehaviour {
 
+    AudioSource audioSrc;
 
 	void Update()
     {
-        
+        audioSrc = GetComponent<AudioSource>();
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
         
     }
@@ -19,6 +20,7 @@ public class CajitaMov : MonoBehaviour {
         {
             BalasManager bm = other.gameObject.GetComponent<BalasManager>();
             PlayerArm pa = other.gameObject.GetComponent<PlayerArm>();
+            audioSrc.Play();
             bm.StartCoroutine("RechargeGun");
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;

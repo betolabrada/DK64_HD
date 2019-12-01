@@ -8,8 +8,7 @@ TagManager:
   - Bullet
   - CajaBalas
   - GunChida
-  - GunChidaNoRobar
-  - hill
+  - CajaVida
   layers:
   - Default
   - TransparentFX

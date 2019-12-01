@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ArmaChidaEnMapa : MonoBehaviour {
 
+
+    // genera armas chidas
+
     public GameObject armaChida;
     public Transform[] refs;
 
