@@ -51,6 +51,8 @@ public class Menu : MonoBehaviour {
 	}
 
 	public void ReiniciarEscena(){
+		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+		gm.asignado = false;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 

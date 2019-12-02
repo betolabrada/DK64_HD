@@ -60,7 +60,7 @@ public class PlayerMov : MonoBehaviour
 
         Move(h, v);
 
-        //transform.Rotate(0, rx * Time.deltaTime * 100, ry * Time.deltaTime * 100);
+        transform.Rotate(0, rx * Time.deltaTime * rotSpeed,0);
     }
 
     void FixedUpdate()

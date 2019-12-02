@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public int[] character = new int[4];
 	public string[] names = {"PlayerDiddy", "PlayerDonkey", "PlayerDixie", "PlayerChunky"};
 	public int modoActual;
+	public bool asignado = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,22 +22,29 @@ public class GameManager : MonoBehaviour {
         {
             if (SceneManager.GetActiveScene().name == "MenuPrincipal")
             {
-
+				asignado = false;
             }
             else
             {
-                for (int i = 0; i < 4; i++)
+                if (asignado == false)
                 {
-                    PlayerMov actual;
-                    actual = GameObject.Find(names[i]).GetComponent<PlayerMov>();
-                    actual.playerN = character[i];
+					Time.timeScale = 0;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        PlayerMov actual;
+                        actual = GameObject.Find(names[i]).GetComponent<PlayerMov>();
+                        actual.playerN = character[i];
+                    }
+					asignado = true;
+					Time.timeScale = 1;
                 }
+
             }
 
         }
     }
 
-	void Awake()
+    void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
         if (FindObjectsOfType(GetType()).Length > 1)
