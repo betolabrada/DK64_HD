@@ -170,7 +170,7 @@ public class PlayerArm : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && gameObject.layer != 15 && gameObject.layer != 16)
         {
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
             otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
