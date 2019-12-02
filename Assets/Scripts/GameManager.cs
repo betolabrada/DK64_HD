@@ -8,23 +8,33 @@ public class GameManager : MonoBehaviour {
 	public int idP1, idP2, idP3, idP4;
 	public int[] character = new int[4];
 	public string[] names = {"PlayerDiddy", "PlayerDonkey", "PlayerDixie", "PlayerChunky"};
+	public int modoActual;
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		// Debug.Log(SceneManager.GetActiveScene().name);
-		if(SceneManager.GetActiveScene().name != "Character"){
-			//Debug.Log(SceneManager.GetActiveScene().name);
-			for(int i = 0; i < 4; i++){
-				PlayerMov actual;
-				actual = GameObject.Find(names[i]).GetComponent<PlayerMov>();
-				actual.playerN = character[i];
-			}
-		}
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (SceneManager.GetActiveScene().name != "Character")
+        {
+            if (SceneManager.GetActiveScene().name == "MenuPrincipal")
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    PlayerMov actual;
+                    actual = GameObject.Find(names[i]).GetComponent<PlayerMov>();
+                    actual.playerN = character[i];
+                }
+            }
+
+        }
+    }
 
 	void Awake()
     {

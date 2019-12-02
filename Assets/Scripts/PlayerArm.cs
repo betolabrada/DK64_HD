@@ -58,7 +58,7 @@ public class PlayerArm : MonoBehaviour {
     }
 
     void FixedUpdate () {
-
+        playerN = playerMov.playerN;
         timer += Time.deltaTime;
 
         // golpear o disparar si arma esta activa
