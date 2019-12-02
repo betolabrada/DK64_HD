@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour {
 
     public float speed = 10f;
+    public Animator animator;
+
 
     Rigidbody playerRigidbody;
     public bool estaEnPiso;
@@ -27,19 +29,21 @@ public class PlayerJump : MonoBehaviour {
         if (Input.GetButtonDown("P" + playerN + "J") && estaEnPiso)
         {
             Jump();
-            estaEnPiso = false;
         }
     }
 
     void Jump()
     {
-        playerRigidbody.AddForce(new Vector3(0,0.25f,0), ForceMode.Impulse);
+        estaEnPiso = false;
+        playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+        animator.SetTrigger("Jump");
     }
 
-    void OnCollisionEnter(Collision c)
+    void OnCollisionEnter(Collision collision)
     {
-        if (c.gameObject.tag == "Ground" && !estaEnPiso)
+        if (collision.gameObject.tag == "Ground" && !estaEnPiso)
         {
+            print("en piso");
             estaEnPiso = true;
         }
     }

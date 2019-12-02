@@ -9,7 +9,6 @@ public class PlayerMov : MonoBehaviour
     public float rotSpeed = 100f;
     public int playerN;
     public int hillPoints;
-    bool estaEnPiso;
 
     private Quaternion originalRotation;
     Rigidbody playerRigidbody;
@@ -19,7 +18,6 @@ public class PlayerMov : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
         originalRotation = transform.rotation;
         this.hillPoints = 0;
@@ -63,15 +61,7 @@ public class PlayerMov : MonoBehaviour
         transform.Rotate(0, rx * Time.deltaTime * rotSpeed,0);
     }
 
-    void FixedUpdate()
-    {
-
-        if (Input.GetButtonDown("P" + playerN + "J") && estaEnPiso)
-        {
-            Jump();
-            estaEnPiso = false;
-        }
-    }
+    
 
     void Move(float h, float v)
     {
@@ -92,12 +82,6 @@ public class PlayerMov : MonoBehaviour
 
     }
 
-    void Jump()
-    {
-        playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
-        animator.SetTrigger("Jump");
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 9)
@@ -105,11 +89,7 @@ public class PlayerMov : MonoBehaviour
             //playerRigidbody.AddExplosionForce(10, transform.position, 5, 3.0F, ForceMode.Impulse);
             playerRigidbody.AddExplosionForce(1200, Vector3.zero, 100);
         }
-        if (collision.gameObject.tag == "Ground" && !estaEnPiso)
-        {
-            print("en piso");
-            estaEnPiso = true;
-        }
+        
     }
 
     void OnCollisionStay(Collision collision)

@@ -92,11 +92,11 @@ public class PlayerArm : MonoBehaviour {
             ToggleGun();
         }
 
-        // lanzar bomba
-        if (Input.GetButtonDown("P" + playerN + "B"))
-        {
-            LanzaBomba();
-        }
+        //// lanzar bomba
+        //if (Input.GetButtonDown("P" + playerN + "B"))
+        //{
+        //    LanzaBomba();
+        //}
 
         // arma chida tiempo
         if (gunChidaActive)
@@ -118,16 +118,16 @@ public class PlayerArm : MonoBehaviour {
 
     }
 
-    void LanzaBomba()
-    {
-        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
-        {
-            GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
-            Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
-            Physics.IgnoreCollision(instBomba.GetComponent<Collider>(), GetComponent<Collider>());
-            instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
-        }
-    }
+    //void LanzaBomba()
+    //{
+    //    if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
+    //    {
+    //        GameObject instBomba = Instantiate(bomb, bombRef.transform.position, bombRef.transform.rotation);
+    //        Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
+    //        Physics.IgnoreCollision(instBomba.GetComponent<Collider>(), GetComponent<Collider>());
+    //        instBombaRigidbody.AddForce(bombRef.transform.forward * 100f);
+    //    }
+    //}
 
     void DisparalaGun()
     {
