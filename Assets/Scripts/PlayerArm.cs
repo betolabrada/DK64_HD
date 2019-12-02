@@ -185,28 +185,36 @@ public class PlayerArm : MonoBehaviour {
 
         if (other.gameObject.tag == "Player" && gameObject.layer == 16)
         {
-            Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
-            otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
-            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth.saludActual <= 0)
+            if (gameObject.layer == 15)
             {
-                Destroy(other);
+                Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+                otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+                playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth.saludActual <= 0)
+                {
+                    Destroy(other);
+                }
+                playerHealth.HacerDanio(danioDeGolpe);
             }
-            playerHealth.HacerDanio(danioDeGolpe);
+         
 
         }
 
 
         if (other.gameObject.tag == "Player" && gameObject.layer == 15)
         {
-            Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
-            otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
-            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth.saludActual <= 0)
+            if (gameObject.layer == 16)
             {
-                Destroy(other);
+                Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+                otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+                playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth.saludActual <= 0)
+                {
+                    Destroy(other);
+                }
+                playerHealth.HacerDanio(danioDeGolpe);
             }
-            playerHealth.HacerDanio(danioDeGolpe);
+            
 
         }
 
