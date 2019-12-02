@@ -596,7 +596,7 @@ Prefab:
       objectReference: {fileID: 2026617500}
     - target: {fileID: 1733304105448600, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
       propertyPath: m_Name
-      value: Player4
+      value: PlayerChunky
       objectReference: {fileID: 0}
     - target: {fileID: 23138798285095556, guid: 4742cca89e6c5894b96468817d0f8d9f,
         type: 2}
@@ -627,6 +627,15 @@ Prefab:
       propertyPath: m_TagString
       value: GunChidaNoRobar
       objectReference: {fileID: 0}
+    - target: {fileID: 4472994910639682, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082554378861284, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1043505759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
@@ -2925,6 +2934,73 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1019582823}
   m_CullTransparentMesh: 0
+--- !u!1001 &1043505758
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 427.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 321.09003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847462930771316, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 304c17d666105e045b67b9495cb384a8, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &1043505759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1775663154019818, guid: 304c17d666105e045b67b9495cb384a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1043505758}
 --- !u!1001 &1057652617
 Prefab:
   m_ObjectHideFlags: 0
@@ -3173,6 +3249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54388e0162bc9a944b2ad99b2bfa113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerChido: 2.5
   ammoDrop: {fileID: 1671315216}
 --- !u!114 &1061328422
 MonoBehaviour:
@@ -3426,6 +3503,19 @@ Prefab:
       propertyPath: m_TagString
       value: GunChidaNoRobar
       objectReference: {fileID: 0}
+    - target: {fileID: 4472994910639682, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733304105448600, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
+      propertyPath: m_Name
+      value: PlayerDonkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082554378861284, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1043505759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
@@ -4121,6 +4211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b5617ea0aa78f48ba62f687a9f0ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modos: {fileID: 0}
+  este: {fileID: 0}
+  grupo1: {fileID: 0}
+  grupo2: {fileID: 0}
+  nextBtn: {fileID: 0}
+  modo: 0
 --- !u!1 &1316566958
 GameObject:
   m_ObjectHideFlags: 0
@@ -4399,7 +4495,7 @@ Prefab:
       objectReference: {fileID: 817849503}
     - target: {fileID: 1733304105448600, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
       propertyPath: m_Name
-      value: Player2
+      value: PlayerDiddy
       objectReference: {fileID: 0}
     - target: {fileID: 23138798285095556, guid: 4742cca89e6c5894b96468817d0f8d9f,
         type: 2}
@@ -4425,6 +4521,15 @@ Prefab:
       propertyPath: m_TagString
       value: GunChidaNoRobar
       objectReference: {fileID: 0}
+    - target: {fileID: 4472994910639682, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082554378861284, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1043505759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
@@ -4823,7 +4928,7 @@ Prefab:
       objectReference: {fileID: 287036507}
     - target: {fileID: 1733304105448600, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
       propertyPath: m_Name
-      value: Player3
+      value: PlayerDixie
       objectReference: {fileID: 0}
     - target: {fileID: 23138798285095556, guid: 4742cca89e6c5894b96468817d0f8d9f,
         type: 2}
@@ -4854,6 +4959,11 @@ Prefab:
       propertyPath: m_TagString
       value: GunChidaNoRobar
       objectReference: {fileID: 0}
+    - target: {fileID: 114082554378861284, guid: 4742cca89e6c5894b96468817d0f8d9f,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1043505759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742cca89e6c5894b96468817d0f8d9f, type: 2}
   m_IsPrefabAsset: 0
@@ -5287,6 +5397,9 @@ MonoBehaviour:
   sliderSalud: {fileID: 417096295}
   recuperacion: 2
   tiempoSinDanio: 3
+  colorDanio: {r: 1, g: 0, b: 0, a: 0.1}
+  flashSpeed: 5
+  animator: {fileID: 0}
   estaMuerto: 0
 --- !u!54 &1568653529
 Rigidbody:

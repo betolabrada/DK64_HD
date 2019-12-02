@@ -120,7 +120,7 @@ public class PlayerArm : MonoBehaviour {
 
     void LanzaBomba()
     {
-        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
         {
             GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
             Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
@@ -130,7 +130,7 @@ public class PlayerArm : MonoBehaviour {
 
     void DisparalaGun()
     {
-        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
         {
             print("disparando");
             timerDisparos = 0f;
@@ -152,7 +152,7 @@ public class PlayerArm : MonoBehaviour {
 
     void DisparalaGunChida()
     {
-        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
         {
             GameObject instBala = Instantiate(balaChida, gunChidaRef.position, Quaternion.identity);
             Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
@@ -198,7 +198,7 @@ public class PlayerArm : MonoBehaviour {
 
     void ToggleGunChida()
     {
-        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
         {
             gun.SetActive(false);
             gunActive = false;
@@ -212,7 +212,7 @@ public class PlayerArm : MonoBehaviour {
 
     void ToggleGun()
     {
-        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        if (gameManager.modoActual != 8 && gameManager.modoActual != 7)
         {
             gun.SetActive(!gunActive);
             gunActive = !gunActive;

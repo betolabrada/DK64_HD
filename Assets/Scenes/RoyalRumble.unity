@@ -1024,6 +1024,11 @@ Prefab:
       propertyPath: danioDeGolpe
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114314759548507364, guid: ee1428145a7fb1240bd4c4aeda1924e3,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1273253954}
     m_RemovedComponents:
     - {fileID: 82518523880250018, guid: ee1428145a7fb1240bd4c4aeda1924e3, type: 2}
     - {fileID: 114058847172600614, guid: ee1428145a7fb1240bd4c4aeda1924e3, type: 2}
@@ -1227,6 +1232,11 @@ Prefab:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 114059531411819168, guid: d8bccb6280163f44cbecc710da948aa0,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1273253954}
     m_RemovedComponents:
     - {fileID: 82374162002367962, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
     - {fileID: 114156716066934662, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
@@ -1889,6 +1899,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1248572713}
   m_CullTransparentMesh: 0
+--- !u!1 &1273253954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1775663154019818, guid: 304c17d666105e045b67b9495cb384a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 460779702}
 --- !u!1 &1287624887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1421710644114632, guid: d8bccb6280163f44cbecc710da948aa0,
@@ -2132,6 +2147,11 @@ Prefab:
       propertyPath: rotSpeed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 114115909269499342, guid: 006363559a50dcd45a5454c4d292b7a9,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1273253954}
     m_RemovedComponents:
     - {fileID: 82469488953029750, guid: 006363559a50dcd45a5454c4d292b7a9, type: 2}
     - {fileID: 114553577566847768, guid: 006363559a50dcd45a5454c4d292b7a9, type: 2}
@@ -2727,6 +2747,11 @@ Prefab:
       propertyPath: danioDeGolpe
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114508856225754402, guid: 004cd807cd30db04f9f3c958cd511809,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1273253954}
     m_RemovedComponents:
     - {fileID: 82354365244083074, guid: 004cd807cd30db04f9f3c958cd511809, type: 2}
     - {fileID: 114746497177268262, guid: 004cd807cd30db04f9f3c958cd511809, type: 2}
