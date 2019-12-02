@@ -9,6 +9,7 @@ TagManager:
   - CajaBalas
   - GunChida
   - CajaVida
+  - Coconut
   layers:
   - Default
   - TransparentFX

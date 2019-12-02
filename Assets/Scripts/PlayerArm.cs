@@ -8,7 +8,9 @@ public class PlayerArm : MonoBehaviour {
     // todos los ataques de player: Arm, Gun, Bomb y Gun Chida
 
     public GameObject bala;
+    public GameObject balaChida;
     public GameObject bomb;
+    public float potenciaDisparo = 500f;
     public Animator animator;
     float tiempoConArmaChida = 10f;
     int playerN;
@@ -34,6 +36,8 @@ public class PlayerArm : MonoBehaviour {
 
     float timer;
     float tiempoEntreGolpes = 0.55f;
+    float timerDisparos;
+    float tiempoEntreDisparos = 0.25f;
     float gunChidaTimer;
     public AudioClip armaChida;
     void Awake()
@@ -60,6 +64,7 @@ public class PlayerArm : MonoBehaviour {
     void FixedUpdate () {
 
         timer += Time.deltaTime;
+        timerDisparos += Time.deltaTime;
 
         // golpear o disparar si arma esta activa
         if (Input.GetButtonDown("P" + playerN + "F"))
@@ -67,8 +72,8 @@ public class PlayerArm : MonoBehaviour {
             timer = 0f;
             if (!gunActive && !gunChidaActive) {arm.SetActive(true); animator.SetTrigger("Punch");}
             else if (gunActive && bm.CurrentAmmo() <= 0) ToggleGun();
-            else if (gunActive) DisparalaGun();
-            else DisparalaGunChida();
+            else if (gunActive && timerDisparos > tiempoEntreDisparos) DisparalaGun();
+            else if (gunChidaActive) DisparalaGunChida();
         }
 
         // timer para golpes
@@ -121,23 +126,27 @@ public class PlayerArm : MonoBehaviour {
     void DisparalaGun()
     {
         print("disparando");
-        GameObject instBala = Instantiate(bala, gunRef.position, Quaternion.identity);
+        timerDisparos = 0f;
+        GameObject instBala = Instantiate(bala, gunRef.position, gunRef.rotation);
+        Physics.IgnoreCollision(instBala.GetComponent<Collider>(), GetComponent<Collider>());
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
         Bullet instBalaScript = instBala.GetComponent<Bullet>();
         instBalaScript.SetFather(gameObject);
-        Vector3 shootVec = instBala.transform.forward;
-        shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
+        //Vector3 shootVec = instBala.transform.forward;
+        //shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
 
-        instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
+        print(gunRef.transform.forward);
+        instBalaRigidbody.AddForce(gunRef.transform.up * potenciaDisparo);
 
         bm.Shot();
     }
 
     void DisparalaGunChida()
     {
-        GameObject instBala = Instantiate(bala, gunChidaRef.position, Quaternion.identity);
+        GameObject instBala = Instantiate(balaChida, gunChidaRef.position, Quaternion.identity);
         Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
         Bullet instBalaScript = instBala.GetComponent<Bullet>();
+        instBalaScript.danioDeBala = 2;
         instBalaScript.SetFather(gunChida);
         Vector3 shootVec = instBala.transform.forward;
         shootVec = Quaternion.Euler(0f, gunChida.transform.eulerAngles.y - 90, 0f) * shootVec;

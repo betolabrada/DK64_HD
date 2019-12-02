@@ -361,8 +361,8 @@ InputManager:
     m_Name: P2RX
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: j
-    positiveButton: k
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
