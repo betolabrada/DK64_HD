@@ -47,7 +47,7 @@ public class PlayersAlive : MonoBehaviour {
 			//Time.timeScale = 0;
 		}
 
-        if (P1Hill.hillPoints > 200)
+        if (P1Hill.hillPoints > 100)
         {
             ganador = "DONKEY";
             //print("GANASTE JUGADOR " + ganador);
@@ -56,7 +56,7 @@ public class PlayersAlive : MonoBehaviour {
             //Time.timeScale = 0;
         }
 
-        if (P2Hill.hillPoints > 200)
+        if (P2Hill.hillPoints > 100)
         {
             ganador = "DIDDY";
             //print("GANASTE JUGADOR " + ganador);
@@ -65,7 +65,7 @@ public class PlayersAlive : MonoBehaviour {
             //Time.timeScale = 0;
         }
 
-        if (P3Hill.hillPoints > 200)
+        if (P3Hill.hillPoints > 100)
         {
             ganador = "DIXIE";
             //print("GANASTE JUGADOR " + ganador);
@@ -74,7 +74,7 @@ public class PlayersAlive : MonoBehaviour {
             //Time.timeScale = 0;
         }
 
-        if (P4Hill.hillPoints > 200)
+        if (P4Hill.hillPoints > 100)
         {
             ganador = "CHUNKY";
             //print("GANASTE JUGADOR " + ganador);
