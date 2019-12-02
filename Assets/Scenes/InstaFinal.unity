@@ -3324,22 +3324,22 @@ Prefab:
     - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
         type: 2}
       propertyPath: character.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
-        type: 2}
-      propertyPath: character.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
-        type: 2}
-      propertyPath: character.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
         type: 2}
-      propertyPath: character.Array.data[3]
+      propertyPath: character.Array.data[1]
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
+        type: 2}
+      propertyPath: character.Array.data[3]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114042268973960540, guid: 304c17d666105e045b67b9495cb384a8,
         type: 2}
