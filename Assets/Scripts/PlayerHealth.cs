@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour {
         estaMuerto = true;
         playerMov.enabled = false;
         playersAlive.DecreseCount();
-        Destroy(gameObject,15.0f);
+        Destroy(gameObject, 6.0f);
         
     }
 
