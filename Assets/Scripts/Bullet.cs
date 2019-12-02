@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour {
         {
             //Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer == 16)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && father.gameObject.layer == 16)
         {
             if(other.gameObject.layer == 15)
             {
@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour {
         }
 
 
-        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer != 15 && gameObject.layer!=16)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && father.gameObject.layer != 15 && father.gameObject.layer!=16)
         {
             if (father.gameObject.tag == "GunChida")
             {
@@ -96,7 +96,7 @@ public class Bullet : MonoBehaviour {
 
         }
 
-        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer == 15)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && father.gameObject.layer == 15)
         {
             if(other.gameObject.layer == 16)
             {

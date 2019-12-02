@@ -610,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fc7c2ce35c3e44683e14138de2403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManagerObject: {fileID: 1273253954}
   winPanel: {fileID: 143121544}
   winText: {fileID: 427102076}
 --- !u!4 &257078328
