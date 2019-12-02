@@ -185,7 +185,7 @@ public class PlayerArm : MonoBehaviour {
 
         if (other.gameObject.tag == "Player" && gameObject.layer == 16)
         {
-            if (gameObject.layer == 15)
+            if (other.gameObject.layer == 15)
             {
                 Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
                 otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
@@ -203,7 +203,7 @@ public class PlayerArm : MonoBehaviour {
 
         if (other.gameObject.tag == "Player" && gameObject.layer == 15)
         {
-            if (gameObject.layer == 16)
+            if (other.gameObject.layer == 16)
             {
                 Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
                 otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);

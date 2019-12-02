@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour {
         }
 
 
-        if (other.gameObject.tag == "Player" && other.gameObject != father)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer != 15 && gameObject.layer!=16)
         {
             if (father.gameObject.tag == "GunChida")
             {
