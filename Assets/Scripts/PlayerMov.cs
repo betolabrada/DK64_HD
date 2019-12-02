@@ -28,11 +28,11 @@ public class PlayerMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("P" + playerN + "H");
-        float v = Input.GetAxisRaw("P" + playerN + "V");
+        //float h = Input.GetAxisRaw("P" + playerN + "H");
+        //float v = Input.GetAxisRaw("P" + playerN + "V");
 
-        //float h = Input.GetAxis("P" + playerN + "H");
-        //float v = Input.GetAxis("P" + playerN + "V");
+        float h = Input.GetAxis("P" + playerN + "H");
+        float v = Input.GetAxis("P" + playerN + "V");
 
         //  ROTACION
         float rx = Input.GetAxis("P" + playerN + "RX");
