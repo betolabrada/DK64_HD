@@ -66,6 +66,22 @@ public class PlayersAlive : MonoBehaviour {
             //Time.timeScale = 0;
         }
 
+        if (gameManager.modoActual == 10 && (P3.estaMuerto || P2.estaMuerto))
+        {
+            if (P3.estaMuerto)
+            {
+                ganador = "DONKEY y DIDDY";
+            }
+            else if (P2.estaMuerto)
+            {
+                ganador = "CHUNKY Y DIXIE";
+            }
+            //print("GANASTE JUGADOR " + ganador);
+            winPanel.SetActive(true);
+            winText.text = ("GANASTE " + ganador);
+            //Time.timeScale = 0;
+        }
+
         if (P1Hill.hillPoints > 100)
         {
             ganador = "DONKEY";
