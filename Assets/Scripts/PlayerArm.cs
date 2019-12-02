@@ -62,7 +62,7 @@ public class PlayerArm : MonoBehaviour {
     }
 
     void FixedUpdate () {
-
+        playerN = playerMov.playerN;
         timer += Time.deltaTime;
         timerDisparos += Time.deltaTime;
 

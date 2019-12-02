@@ -18,9 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstMap.unity
     guid: d35426d88a64669409403b34f0d82eac
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/RainingDeath.unity
+    guid: af9a13cb1ea23b7449e798728c467fdf
+  - enabled: 1
+    path: Assets/Scenes/InstaKill.unity
+    guid: 24bc1b4bdf506ca4f96877668bf3f548
+  - enabled: 1
+    path: Assets/Scenes/KingOfTheHill.unity
+    guid: 35fd810428041d44aa338cb9b885ab6e
   - enabled: 1
     path: Assets/Scenes/RoyalRumble.unity
     guid: b6b1aead7e55b5b4ab2ddf7c910bb38f
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}

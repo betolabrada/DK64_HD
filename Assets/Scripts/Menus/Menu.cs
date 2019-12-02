@@ -10,11 +10,21 @@ public class Menu : MonoBehaviour {
 	public GameObject grupo1, grupo2;
 	public GameObject nextBtn;
 	private int grupoActual;
+	public int modo;
+	GameManager gm;
 	void Start(){
 		grupoActual = 1;
 	}
 	public void CambiarEscena(){
 		SceneManager.LoadScene("SelectMode");
+		
+	}
+
+	public void Characters(){
+		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+		gm.modoActual = modo;
+		SceneManager.LoadScene("Character");
+			
 		
 	}
 
@@ -49,8 +59,13 @@ public class Menu : MonoBehaviour {
 		
 	}
 
+	public void PlayGame(){
+		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+		SceneManager.LoadScene(gm.modoActual);
+	}
+
 	public void SalirJuego(){
 		Debug.Log("uihdsuf");
-		//Application.Quit();
+		Application.Quit();
 	}
 }
