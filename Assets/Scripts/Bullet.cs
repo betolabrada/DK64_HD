@@ -41,12 +41,45 @@ public class Bullet : MonoBehaviour {
         {
             //Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Player" && other.gameObject != father && other.gameObject.layer != gameObject.layer)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer == 16)
         {
-            if (father.gameObject.tag == "GunChida"){
+            if(other.gameObject.layer == 15)
+            {
+                if (father.gameObject.tag == "GunChida")
+                {
+                    danioDeBala = 3;
+                    print("collision");
+                }
+                else
+                {
+                    danioDeBala = 1;
+                }
+                Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+                otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+
+                otherPlayerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                if (otherPlayerHealth.saludActual <= 0)
+                {
+                    Destroy(other.gameObject);
+                }
+                otherPlayerHealth.HacerDanio(danioDeBala);
+
+                Destroy(gameObject);
+            }
+          
+
+        }
+
+
+        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer != 15 && gameObject.layer!=16)
+        {
+            if (father.gameObject.tag == "GunChida")
+            {
                 danioDeBala = 3;
                 print("collision");
-            } else{
+            }
+            else
+            {
                 danioDeBala = 1;
             }
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
@@ -62,6 +95,37 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
 
         }
+
+        if (other.gameObject.tag == "Player" && other.gameObject != father && gameObject.layer == 15)
+        {
+            if(other.gameObject.layer == 16)
+            {
+                if (father.gameObject.tag == "GunChida")
+                {
+                    danioDeBala = 3;
+                    print("collision");
+                }
+                else
+                {
+                    danioDeBala = 1;
+                }
+                Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+                otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+
+                otherPlayerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                if (otherPlayerHealth.saludActual <= 0)
+                {
+                    Destroy(other.gameObject);
+                }
+                otherPlayerHealth.HacerDanio(danioDeBala);
+
+                Destroy(gameObject);
+            }
+        }
+
+
+
+
 
         if (other.gameObject.tag == "Untagged" && other.gameObject != father)
         {

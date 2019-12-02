@@ -50,13 +50,13 @@ public class PlayersAlive : MonoBehaviour {
 			//Time.timeScale = 0;
 		}
 
-        if (alive == 2)
+        if (alive == 2 && gameManager.modoActual == 9 || alive == 1 && gameManager.modoActual == 9)
         {
-            if (P3.estaMuerto && P4.estaMuerto && gameManager.modoActual == 9)
+            if (P3.estaMuerto && P4.estaMuerto)
             {
                 ganador = "DONKEY y DIDDY";
             }
-            else if (P1.estaMuerto && P2.estaMuerto && gameManager.modoActual == 9)
+            else if (P1.estaMuerto && P2.estaMuerto)
             {
                 ganador = "CHUNKY Y DIXIE";
             }
