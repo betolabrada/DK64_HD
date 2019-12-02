@@ -14,13 +14,14 @@ public class ChangeCharacter : MonoBehaviour
     bool Selected;
     public int playerN;
 	public AudioClip change, cancel;
-
+    GM_Reference gmReference;
     void Start()
     {
         Selected = false;
         Player = GetComponent<Image>();
         Player.sprite = characters[actualChar];
         sonidito = GetComponent<AudioSource>();
+        gmReference = GameObject.Find("Reference").GetComponent<GM_Reference>();
     }
 
     // Update is called once per frame
@@ -30,17 +31,24 @@ public class ChangeCharacter : MonoBehaviour
         //	SELECCIONAR PERSONAJE
         if (Input.GetKeyDown("joystick " + playerN + " button 0"))
         {
-            if (Selected == false)
+            if (gmReference.SelectCharacter(actualChar, playerN))
             {
-                Selected = true;
-                sonidito.Play();
+                if (Selected == false)
+                {
+                    Selected = true;
+                    sonidito.Play();
+                }
+            }else{
+                sonidito.PlayOneShot(cancel);
             }
+
         }
 
         //	DESELECCIONAR PERSONAJE
         if (Input.GetKeyDown("joystick " + playerN + " button 1"))
         {
             Selected = false;
+            gmReference.DeselectCharacter(actualChar);
             sonidito.PlayOneShot(cancel);
         }
 

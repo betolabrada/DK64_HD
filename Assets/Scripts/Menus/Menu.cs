@@ -49,8 +49,12 @@ public class Menu : MonoBehaviour {
 		
 	}
 
+	public void PlayGame(){
+		SceneManager.LoadScene(5);
+	}
+
 	public void SalirJuego(){
 		Debug.Log("uihdsuf");
-		//Application.Quit();
+		Application.Quit();
 	}
 }
