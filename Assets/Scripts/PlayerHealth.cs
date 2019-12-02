@@ -21,9 +21,12 @@ public class PlayerHealth : MonoBehaviour {
     bool hayCoroutine = false;
     MeshRenderer materialRenderer;
     Color playerOriginalColor;
+
+    Vector3 originalPos;
     
     void Start()
     {
+        originalPos = transform.position;
         playerAudio = GetComponent<AudioSource>();
         saludActual = saludInicial;
         estaMuerto = false;
@@ -75,6 +78,21 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
+    public void HacerDanio(int cantidad, GameObject attacker)
+    {
+        danio = true;
+        saludActual -= cantidad;
+        sliderSalud.value = saludActual;
+        animator.SetTrigger("Hit");
+        playerAudio.Play();
+        if (saludActual <= 0 && !estaMuerto)
+        {
+            //ScoreManager.newMuerte(gameObject, attacker.gameObject);
+            Muerte();
+        }
+    }
+
+
     public void RecuperarVida(int vida)
     {
         for (int i = 0; i < vida && saludActual < saludInicial; i++)
@@ -87,12 +105,13 @@ public class PlayerHealth : MonoBehaviour {
 
     void Muerte()
     {
-        animator.SetBool("IsDead", true);
+        //animator.SetBool("IsDead", true);
         
         estaMuerto = true;
-        playerMov.enabled = false;
-        playersAlive.DecreseCount();
-        Destroy(gameObject, 6.0f);
+        StartCoroutine("Respawn");
+        //playerMov.enabled = false;
+        //playersAlive.DecreseCount();
+        //Destroy(gameObject, 6.0f);
         
     }
 
@@ -110,5 +129,12 @@ public class PlayerHealth : MonoBehaviour {
         print("vida llena");
         hayCoroutine = false;
        
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(10f);
+        estaMuerto = false;
+        transform.position = originalPos;
     }
 }

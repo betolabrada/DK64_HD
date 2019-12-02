@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ArmaChidaShoot : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+
+    public int playerN;
+
+    AudioSource armaAudio;
+
+    void Start ()
+    {
+        armaAudio = GetComponent<AudioSource>();
+    }
 	void Update () {
-		
+		if (Input.GetButton("P" + playerN + "F"))
+        {
+            armaAudio.Play();
+        }
 	}
 }

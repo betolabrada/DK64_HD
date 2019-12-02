@@ -22,10 +22,8 @@ public class Bullet : MonoBehaviour {
         monkeyCollider = father.GetComponent<BoxCollider>();
         bulletCollider = GetComponent<SphereCollider>();
         bulletAudio = GetComponent<AudioSource>();
-        if (tag == "Coconut")
-        {
-            bulletAudio.Play();
-        }
+        bulletAudio.Play();
+        
 
     }
 

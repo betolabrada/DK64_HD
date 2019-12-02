@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 114059531411819168}
   - component: {fileID: 222519465968318394}
   - component: {fileID: 82374162002367962}
+  - component: {fileID: 114374650842763656}
   m_Layer: 13
   m_Name: PlayerDiddy
   m_TagString: Player
@@ -2078,8 +2079,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 2c03765c22e54d8428e96e9246837f07, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2218,6 +2219,8 @@ MonoBehaviour:
   bomb: {fileID: 1631715987319584, guid: df7509565dd2dc6408792281a7cbf554, type: 2}
   potenciaDisparo: 500
   animator: {fileID: 95752506835895942}
+  danioDeGolpe: 2
+  gameManagerObject: {fileID: 0}
   armaChida: {fileID: 8300000, guid: 6dc3bd1397d68c9428e16f37a822d6c7, type: 3}
 --- !u!114 &114156716066934662
 MonoBehaviour:
@@ -2248,6 +2251,20 @@ MonoBehaviour:
   playerN: 1
   hillPoints: 0
   animator: {fileID: 95752506835895942}
+--- !u!114 &114374650842763656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1421710644114632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b5f287f61f78647bd77140a4a91cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomba: {fileID: 1631715987319584, guid: df7509565dd2dc6408792281a7cbf554, type: 2}
+  bombRef: {fileID: 4731782361361620}
+  gameManagerObject: {fileID: 0}
 --- !u!114 &114687669338727556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2260,6 +2277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  animator: {fileID: 0}
   estaEnPiso: 0
 --- !u!114 &114916631020910618
 MonoBehaviour:
@@ -2272,6 +2290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe13b361a12af54b80e27c97695e24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerN: 1
 --- !u!136 &136418079760798456
 CapsuleCollider:
   m_ObjectHideFlags: 1
