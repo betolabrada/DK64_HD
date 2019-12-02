@@ -124,6 +124,7 @@ public class PlayerArm : MonoBehaviour {
         {
             GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
             Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
+            Physics.IgnoreCollision(instBomba.GetComponent<Collider>(), GetComponent<Collider>());
             instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
         }
     }

@@ -18,10 +18,11 @@ public class Bomb : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag != "Ground")
+        if (other.gameObject.tag == "Player")
         {
+            other.gameObject.GetComponent<PlayerHealth>().HacerDanio(2);
             collisionRB = other.gameObject.GetComponent<Rigidbody>();
-            collisionRB.AddExplosionForce(10000f, transform.position, 0f);
+            collisionRB.AddExplosionForce(1000f, transform.position, 0f);
         }
     }
 }
