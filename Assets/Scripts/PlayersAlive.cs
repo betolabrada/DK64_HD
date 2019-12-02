@@ -16,15 +16,15 @@ public class PlayersAlive : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		alive = 4;
-		P1 =  GameObject.Find("PlayerDonkey").GetComponent<PlayerHealth>();
-		P2 =  GameObject.Find("PlayerDiddy").GetComponent<PlayerHealth>();
-		P3 =  GameObject.Find("PlayerDixie").GetComponent<PlayerHealth>();
-		P4 =  GameObject.Find("PlayerChunky").GetComponent<PlayerHealth>();
+		P1 =  GameObject.Find("Player1").GetComponent<PlayerHealth>();
+		P2 =  GameObject.Find("Player2").GetComponent<PlayerHealth>();
+		P3 =  GameObject.Find("Player3").GetComponent<PlayerHealth>();
+		P4 =  GameObject.Find("Player4").GetComponent<PlayerHealth>();
 
-        P1Hill = GameObject.Find("PlayerDonkey").GetComponent<PlayerMov>();
-        P2Hill = GameObject.Find("PlayerDiddy").GetComponent<PlayerMov>();
-        P3Hill = GameObject.Find("PlayerDixie").GetComponent<PlayerMov>();
-        P4Hill = GameObject.Find("PlayerChunky").GetComponent<PlayerMov>();
+        P1Hill = GameObject.Find("Player1").GetComponent<PlayerMov>();
+        P2Hill = GameObject.Find("Player2").GetComponent<PlayerMov>();
+        P3Hill = GameObject.Find("Player3").GetComponent<PlayerMov>();
+        P4Hill = GameObject.Find("Player4").GetComponent<PlayerMov>();
 
     }
 
