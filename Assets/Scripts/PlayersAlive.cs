@@ -50,7 +50,7 @@ public class PlayersAlive : MonoBehaviour {
 			//Time.timeScale = 0;
 		}
 
-        if (alive == 2)
+        if (alive == 2 || alive == 1)
         {
             if (P3.estaMuerto && P4.estaMuerto && gameManager.modoActual == 9)
             {

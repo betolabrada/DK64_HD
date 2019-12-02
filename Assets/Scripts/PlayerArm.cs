@@ -170,7 +170,34 @@ public class PlayerArm : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Player" && other.gameObject.layer != gameObject.layer)
+        if (other.gameObject.tag == "Player")
+        {
+            Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+            otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth.saludActual <= 0)
+            {
+                Destroy(other);
+            }
+            playerHealth.HacerDanio(danioDeGolpe);
+
+        }
+
+        if (other.gameObject.tag == "Player" && gameObject.layer == 16)
+        {
+            Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
+            otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
+            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth.saludActual <= 0)
+            {
+                Destroy(other);
+            }
+            playerHealth.HacerDanio(danioDeGolpe);
+
+        }
+
+
+        if (other.gameObject.tag == "Player" && gameObject.layer == 15)
         {
             Rigidbody otherPlayer = other.gameObject.GetComponent<Rigidbody>();
             otherPlayer.AddExplosionForce(1200, Vector3.zero, 100);
