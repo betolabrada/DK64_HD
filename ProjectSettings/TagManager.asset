@@ -10,6 +10,10 @@ TagManager:
   - GunChida
   - CajaVida
   - Coconut
+  - GunChidaNoRobar
+  - hill
+  - TeamOne
+  - TeamTwo
   layers:
   - Default
   - TransparentFX
@@ -26,8 +30,8 @@ TagManager:
   - 
   - Player
   - Dummy
-  - 
-  - 
+  - TeamOne
+  - TeamTwo
   - 
   - 
   - 

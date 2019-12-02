@@ -10,12 +10,15 @@ public class PlayersAlive : MonoBehaviour {
 	PlayerHealth P1, P2, P3, P4;
     PlayerMov P1Hill, P2Hill, P3Hill, P4Hill;
     private string ganador;
+    public GameObject gameManagerObject;
+    GameManager gameManager;
 
-	public GameObject winPanel;
+    public GameObject winPanel;
 	public Text winText;
 	// Use this for initialization
 	void Start () {
-		alive = 4;
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+        alive = 4;
 		P1 =  GameObject.Find("PlayerDonkey").GetComponent<PlayerHealth>();
 		P2 =  GameObject.Find("PlayerDiddy").GetComponent<PlayerHealth>();
 		P3 =  GameObject.Find("PlayerDixie").GetComponent<PlayerHealth>();
@@ -46,6 +49,22 @@ public class PlayersAlive : MonoBehaviour {
 			winText.text = ("GANASTE " + ganador);
 			//Time.timeScale = 0;
 		}
+
+        if (alive == 2)
+        {
+            if (P3.estaMuerto && P4.estaMuerto && gameManager.modoActual == 9)
+            {
+                ganador = "DONKEY y DIDDY";
+            }
+            else if (P1.estaMuerto && P2.estaMuerto && gameManager.modoActual == 9)
+            {
+                ganador = "CHUNKY Y DIXIE";
+            }
+            //print("GANASTE JUGADOR " + ganador);
+            winPanel.SetActive(true);
+            winText.text = ("GANASTE " + ganador);
+            //Time.timeScale = 0;
+        }
 
         if (P1Hill.hillPoints > 100)
         {

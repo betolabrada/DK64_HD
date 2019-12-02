@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour {
         {
             //Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Player" && other.gameObject != father)
+        if (other.gameObject.tag == "Player" && other.gameObject != father && other.gameObject.layer != gameObject.layer)
         {
             if (father.gameObject.tag == "GunChida"){
                 danioDeBala = 3;
