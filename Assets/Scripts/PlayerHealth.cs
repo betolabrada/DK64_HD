@@ -87,10 +87,11 @@ public class PlayerHealth : MonoBehaviour {
     void Muerte()
     {
         animator.SetBool("IsDead", true);
+        
         estaMuerto = true;
         playerMov.enabled = false;
         playersAlive.DecreseCount();
-        Destroy(gameObject);
+        Destroy(gameObject,15.0f);
         
     }
 
