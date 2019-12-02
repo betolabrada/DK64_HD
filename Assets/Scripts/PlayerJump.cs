@@ -48,4 +48,7 @@ public class PlayerJump : MonoBehaviour {
         }
     }
 
+    void Update(){
+        playerN = pMov.playerN;
+    }
 }

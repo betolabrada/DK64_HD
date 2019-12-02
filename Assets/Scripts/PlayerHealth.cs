@@ -93,6 +93,7 @@ public class PlayerHealth : MonoBehaviour {
         playerMov.enabled = false;
         playersAlive.DecreseCount();
         Destroy(gameObject, 6.0f);
+        //gameObject.SetActive(false);
         
     }
 
