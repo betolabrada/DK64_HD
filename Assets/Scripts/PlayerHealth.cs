@@ -68,6 +68,7 @@ public class PlayerHealth : MonoBehaviour {
         danio = true;
         saludActual -= cantidad;
         sliderSalud.value = saludActual;
+        animator.SetTrigger("Hit");
         playerAudio.Play();    
         if (saludActual <= 0 && !estaMuerto){
             Muerte();
