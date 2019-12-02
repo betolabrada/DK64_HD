@@ -66,7 +66,7 @@ public class PlayersAlive : MonoBehaviour {
             //Time.timeScale = 0;
         }
 
-        if (gameManager.modoActual == 10)
+        if (gameManager.modoActual == 10 && (P3.estaMuerto || P2.estaMuerto))
         {
             if (P3.estaMuerto)
             {
