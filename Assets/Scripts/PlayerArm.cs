@@ -14,19 +14,21 @@ public class PlayerArm : MonoBehaviour {
     public Animator animator;
     float tiempoConArmaChida = 10f;
     int playerN;
-    int danioDeGolpe = 2;
+    public int danioDeGolpe = 2;
 
     PlayerMov playerMov;
     PlayerHealth playerHealth;
     BalasManager bm;
     ArmaChidaEnMapa acem;
     ArmaChidaScript acem2;
+    GameManager gameManager;
 
     // children
     GameObject arm;
     GameObject gun;
     GameObject bombRef; // despues
     GameObject gunChida;
+    public GameObject gameManagerObject;
 
     Transform gunRef;
     Transform gunChidaRef;
@@ -42,6 +44,8 @@ public class PlayerArm : MonoBehaviour {
     public AudioClip armaChida;
     void Awake()
     {
+
+        gameManager = gameManagerObject.GetComponent<GameManager>();
         playerMov = GetComponent<PlayerMov>();
         playerHealth = GetComponent<PlayerHealth>();
         bm = GetComponent<BalasManager>();
@@ -116,42 +120,50 @@ public class PlayerArm : MonoBehaviour {
 
     void LanzaBomba()
     {
-        GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
-        Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
-
-
-        instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
+        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        {
+            GameObject instBomba = Instantiate(bomb, bombRef.transform.position, Quaternion.identity);
+            Rigidbody instBombaRigidbody = instBomba.GetComponent<Rigidbody>();
+            instBombaRigidbody.AddForce(instBomba.transform.forward * 10f, ForceMode.Impulse);
+        }
     }
 
     void DisparalaGun()
     {
-        print("disparando");
-        timerDisparos = 0f;
-        GameObject instBala = Instantiate(bala, gunRef.position, gunRef.rotation);
-        Physics.IgnoreCollision(instBala.GetComponent<Collider>(), GetComponent<Collider>());
-        Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
-        Bullet instBalaScript = instBala.GetComponent<Bullet>();
-        instBalaScript.SetFather(gameObject);
-        //Vector3 shootVec = instBala.transform.forward;
-        //shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
+        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        {
+            print("disparando");
+            timerDisparos = 0f;
+            GameObject instBala = Instantiate(bala, gunRef.position, gunRef.rotation);
+            Physics.IgnoreCollision(instBala.GetComponent<Collider>(), GetComponent<Collider>());
+            Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
+            Bullet instBalaScript = instBala.GetComponent<Bullet>();
+            instBalaScript.SetFather(gameObject);
+            //Vector3 shootVec = instBala.transform.forward;
+            //shootVec = Quaternion.Euler(0f, gun.transform.eulerAngles.y, 0f) * shootVec;
 
-        print(gunRef.transform.forward);
-        instBalaRigidbody.AddForce(gunRef.transform.up * potenciaDisparo);
+            print(gunRef.transform.forward);
+            instBalaRigidbody.AddForce(gunRef.transform.up * potenciaDisparo);
 
-        bm.Shot();
+            bm.Shot();
+        }
+   
     }
 
     void DisparalaGunChida()
     {
-        GameObject instBala = Instantiate(balaChida, gunChidaRef.position, Quaternion.identity);
-        Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
-        Bullet instBalaScript = instBala.GetComponent<Bullet>();
-        instBalaScript.danioDeBala = 2;
-        instBalaScript.SetFather(gunChida);
-        Vector3 shootVec = instBala.transform.forward;
-        shootVec = Quaternion.Euler(0f, gunChida.transform.eulerAngles.y - 90, 0f) * shootVec;
+        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        {
+            GameObject instBala = Instantiate(balaChida, gunChidaRef.position, Quaternion.identity);
+            Rigidbody instBalaRigidbody = instBala.GetComponent<Rigidbody>();
+            Bullet instBalaScript = instBala.GetComponent<Bullet>();
+            instBalaScript.danioDeBala = 2;
+            instBalaScript.SetFather(gunChida);
+            Vector3 shootVec = instBala.transform.forward;
+            shootVec = Quaternion.Euler(0f, gunChida.transform.eulerAngles.y - 90, 0f) * shootVec;
+            instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
+        }
 
-        instBalaRigidbody.AddForce(shootVec * 20f, ForceMode.Impulse);
 
     }
     void OnTriggerEnter(Collider other)
@@ -186,21 +198,27 @@ public class PlayerArm : MonoBehaviour {
 
     void ToggleGunChida()
     {
-        gun.SetActive(false);
-        gunActive = false;
-        gunChida.SetActive(!gunChidaActive);
-        gunChida.GetComponent<BoxCollider>().enabled = false;
-        gunChidaActive = !gunChidaActive;
-        playerMov.speed = !gunChidaActive ? 10f : 8.5f;
+        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        {
+            gun.SetActive(false);
+            gunActive = false;
+            gunChida.SetActive(!gunChidaActive);
+            gunChida.GetComponent<BoxCollider>().enabled = false;
+            gunChidaActive = !gunChidaActive;
+            playerMov.speed = !gunChidaActive ? 10f : 8.5f;
 
-
+        }
     }
 
     void ToggleGun()
     {
-        gun.SetActive(!gunActive);
-        gunActive = !gunActive;
-        playerMov.speed = !gunActive ? 10f : 7.5f;
+        if (gameManager.modoActual != 9 && gameManager.modoActual != 7)
+        {
+            gun.SetActive(!gunActive);
+            gunActive = !gunActive;
+            playerMov.speed = !gunActive ? 10f : 7.5f;
+        }
+            
 
 
     }

@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/InstaFinal.unity
+    guid: f756d78e6be8b164c832d0081963d7a5
   m_configObjects: {}
