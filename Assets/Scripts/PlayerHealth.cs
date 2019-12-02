@@ -87,7 +87,7 @@ public class PlayerHealth : MonoBehaviour {
     void Muerte()
     {
         animator.SetBool("IsDead", true);
-        GetComponent<Collider>().enabled = false;
+        
         estaMuerto = true;
         playerMov.enabled = false;
         playersAlive.DecreseCount();

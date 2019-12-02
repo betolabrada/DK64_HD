@@ -9,7 +9,7 @@ public class PlayerMov : MonoBehaviour
     public float rotSpeed = 100f;
     public int playerN;
     public int hillPoints;
-    public bool estaEnPiso;
+    bool estaEnPiso;
 
     private Quaternion originalRotation;
     Rigidbody playerRigidbody;
@@ -19,6 +19,7 @@ public class PlayerMov : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        estaEnPiso = true;
         playerRigidbody = GetComponent<Rigidbody>();
         originalRotation = transform.rotation;
         this.hillPoints = 0;
@@ -29,7 +30,7 @@ public class PlayerMov : MonoBehaviour
     {
         //float h = Input.GetAxisRaw("P" + playerN + "H");
         //float v = Input.GetAxisRaw("P" + playerN + "V");
-        print(estaEnPiso);
+
         float h = Input.GetAxis("P" + playerN + "H");
         float v = Input.GetAxis("P" + playerN + "V");
 
@@ -68,6 +69,7 @@ public class PlayerMov : MonoBehaviour
         if (Input.GetButtonDown("P" + playerN + "J") && estaEnPiso)
         {
             Jump();
+            estaEnPiso = false;
         }
     }
 
@@ -92,7 +94,6 @@ public class PlayerMov : MonoBehaviour
 
     void Jump()
     {
-        estaEnPiso = false;
         playerRigidbody.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
         animator.SetTrigger("Jump");
     }
