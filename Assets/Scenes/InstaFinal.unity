@@ -1375,6 +1375,11 @@ Prefab:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2042534421}
+    - target: {fileID: 114374650842763656, guid: d8bccb6280163f44cbecc710da948aa0,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 568243178}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
   m_IsPrefabAsset: 0

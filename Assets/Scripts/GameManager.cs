@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Return)  | Input.GetKeyDown("joystick 1 button 7") | Input.GetKeyDown("joystick 2 button 7") | Input.GetKeyDown("joystick 3 button 7") | Input.GetKeyDown("joystick 4 button 7")){
+            SceneManager.LoadScene("MenuPrincipal");
+        }
         if (SceneManager.GetActiveScene().name != "Character")
         {
             if (SceneManager.GetActiveScene().name == "MenuPrincipal")

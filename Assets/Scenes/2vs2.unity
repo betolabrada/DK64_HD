@@ -2874,7 +2874,13 @@ Prefab:
       propertyPath: animator
       value: 
       objectReference: {fileID: 110521103}
-    m_RemovedComponents: []
+    - target: {fileID: 114374650842763656, guid: d8bccb6280163f44cbecc710da948aa0,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 631461871}
+    m_RemovedComponents:
+    - {fileID: 114374650842763656, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &987080881 stripped
@@ -3194,7 +3200,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061328415}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c8618e95f2d1073428442f281c2933a1, type: 3}

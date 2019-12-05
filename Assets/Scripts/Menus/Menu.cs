@@ -64,6 +64,7 @@ public class Menu : MonoBehaviour {
 
 	public void PlayGame(){
 		gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+		gm.asignado = false;
 		SceneManager.LoadScene(gm.modoActual);
 	}
 

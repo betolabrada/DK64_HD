@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour {
 
         else
         {
-            materialRenderer.material.color = Color.Lerp(materialRenderer.material.color, playerOriginalColor, 
+                materialRenderer.material.color = Color.Lerp(materialRenderer.material.color, playerOriginalColor, 
                 flashSpeed * Time.deltaTime);
 
         }
@@ -105,13 +105,13 @@ public class PlayerHealth : MonoBehaviour {
 
     void Muerte()
     {
-        //animator.SetBool("IsDead", true);
+        animator.SetBool("IsDead", true);
         
         estaMuerto = true;
-        StartCoroutine("Respawn");
-        //playerMov.enabled = false;
-        //playersAlive.DecreseCount();
-        //Destroy(gameObject, 6.0f);
+        //StartCoroutine("Respawn");
+        playerMov.enabled = false;
+        playersAlive.DecreseCount();
+        Destroy(gameObject, 6.0f);
         
     }
 

@@ -1253,6 +1253,11 @@ Prefab:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1667119688}
+    - target: {fileID: 114374650842763656, guid: d8bccb6280163f44cbecc710da948aa0,
+        type: 2}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 1273253954}
     m_RemovedComponents:
     - {fileID: 82374162002367962, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
     - {fileID: 114156716066934662, guid: d8bccb6280163f44cbecc710da948aa0, type: 2}
@@ -1818,7 +1823,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c8618e95f2d1073428442f281c2933a1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
